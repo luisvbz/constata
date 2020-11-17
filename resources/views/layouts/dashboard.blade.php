@@ -19,6 +19,7 @@
 
     <link href="{{ asset('dashboard/css/sb-admin-2.css')}}" rel="stylesheet">
     <link href="{{ asset('dashboard/css/custom.css')}}" rel="stylesheet">
+    <link href="{{ asset('dashboard/css/pikaday.css')}}" rel="stylesheet">
     @livewireStyles
 
 </head>
@@ -143,8 +144,9 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('dashboard/js/sb-admin-2.min.js') }}"></script>
+<script src="{{ asset('dashboard/js/pikaday.js') }}"></script>
 
-
+@stack('js')
 </body>
 
 </html>
