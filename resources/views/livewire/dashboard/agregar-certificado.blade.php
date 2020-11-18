@@ -12,16 +12,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label><strong>Estado</strong></label>
-                                <select class="form-control" id="exampleFormControlSelect1" wire:model.lazy="form.estado">
-                                    <option value="1">Vigente</option>
-                                    <option value="0">Vencido</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Placa</strong></label>
                                 <input wire:model.lazy="form.placa" class="form-control @error('form.placa') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Ingrese la placa del vehiculo"/>
@@ -30,7 +21,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Código de Ceritificado</strong></label>
                                 <input wire:model.lazy="form.codigo" class="form-control  @error('form.codigo') is-invalid @enderror"" onkeyup="mayus(this);" placeholder="Ingrese la placa del vehiculo"/>
@@ -41,7 +32,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Vigencia desde:</strong></label>
                                 <input wire:model.lazy="form.vigente_desde" class="form-control @error('form.vigente_desde') is-invalid @enderror" id="desde" placeholder="seleccione la fecha"/>
@@ -50,7 +41,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Vigencia hasta:</strong></label>
                                 <input wire:model.lazy="form.vigente_hasta" class="form-control @error('form.vigente_hasta') is-invalid @enderror" id="hasta" placeholder="seleccione la fecha"/>
@@ -61,7 +52,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Empresa</strong></label>
                                 <input wire:model.lazy="form.empresa" class="form-control  @error('form.empresa') is-invalid @enderror" placeholder="Ingrese la empresa certificadora"/>
@@ -70,7 +61,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Ámbito</strong></label>
                                 <input wire:model.lazy="form.ambito" class="form-control @error('form.ambito') is-invalid @enderror" placeholder="Ingrese el ámbito"/>
@@ -79,7 +70,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Servicio</strong></label>
                                 <input  wire:model.lazy="form.servicio" class="form-control @error('form.servicio') is-invalid @enderror" placeholder="Ingrese el servicio"/>
@@ -112,8 +103,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary pull-right">Guardar y agregar otro <i class="fa fa-save"></i></button>
+                <div class="row" wire:loading wire:target="guardar">
+                    <div class="col pl-4 pr-4">
+                        <div class="alert alert-info">
+                            <h5>Guardado datos, espere por favor <i class="fas fa-spinner fa-spin"></i></h5>
+                        </div>
+                    </div>
+                </div>
+                @if(session()->has('error'))
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error!</strong> {{ session()->get('error') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="{{ route('dashboard') }}" class="btn btn-danger pull-right"><i class="fa fa-chevron-circle-left"></i> Volver</a>
+                    <button type="submit" class="btn btn-success pull-right">Guardar y agregar otro <i class="fa fa-save"></i></button>
                 </div>
             </div>
             </form>
@@ -152,7 +163,8 @@
                 toString(date, format) {
                     // you should do formatting based on the passed format,
                     // but we will just return 'D/M/YYYY' for simplicity
-                    const day = date.getDate();
+                    var day = date.getDate();
+                    day = day < 10 ?`0${day}` : day;
                     const month = date.getMonth() + 1;
                     const year = date.getFullYear();
                     return `${day}/${month}/${year}`;
@@ -172,7 +184,8 @@
                 toString(date, format) {
                     // you should do formatting based on the passed format,
                     // but we will just return 'D/M/YYYY' for simplicity
-                    const day = date.getDate();
+                    var day = date.getDate();
+                    day = day < 10 ? `0${day}` : day;
                     const month = date.getMonth() + 1;
                     const year = date.getFullYear();
                     return `${day}/${month}/${year}`;

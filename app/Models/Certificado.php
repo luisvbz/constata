@@ -21,4 +21,18 @@ class Certificado extends Model
         'ambito',
         'servicio',
     ];
+
+
+    protected $appends = ['state'];
+
+    public function getStateAttribute()
+    {
+        $now = date('Y-m-d');
+        if($now <= $this->vigente_hasta)
+        {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

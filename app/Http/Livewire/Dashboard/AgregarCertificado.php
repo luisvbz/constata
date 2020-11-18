@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Dashboard;
 
+use App\Models\Certificado;
 use Livewire\Component;
 
 class AgregarCertificado extends Component
 {
     public $form = [
-        'estado' => 1,
         'placa' => '',
         'codigo' => '',
         'vigente_desde' => '',
@@ -21,7 +21,6 @@ class AgregarCertificado extends Component
 
     public function updated ($field) {
         $this->validateOnly($field, [
-            'form.estado' => 'required',
             'form.placa' => 'required|unique:certificados,placa',
             'form.codigo' => 'required|unique:certificados,codigo',
             'form.vigente_desde' => 'required|date_format:d/m/Y',
@@ -32,7 +31,6 @@ class AgregarCertificado extends Component
             'form.ambito' => 'required',
             'form.servicio' => 'required',
         ], [
-            'form.estado.required' => 'Debe seleccionar el estado',
             'form.placa.required' => 'Debe ingresar la placa',
             'form.placa.unique' => 'El numero de placa ya se encuentra registrado',
             'form.codigo.required' => 'Debe ingresar el codigo',
@@ -52,7 +50,6 @@ class AgregarCertificado extends Component
     public function guardar()
     {
         $this->validate([
-           'form.estado' => 'required',
            'form.placa' => 'required|unique:certificados,placa',
            'form.codigo' => 'required|unique:certificados,codigo',
            'form.vigente_desde' => 'required|date_format:d/m/Y',
@@ -79,7 +76,37 @@ class AgregarCertificado extends Component
             'form.resultado_inspeccion.required' => 'Debe ingresar el resultado de inspección',
         ]);
 
-        dd($this->form);
+        //generar el nuevo certificado vehicular
+
+        try {
+
+            Certificado::create([
+                'placa' => $this->form['placa'],
+                'codigo' => $this->form['codigo'],
+                'vigente_desde' => $this->date_to_datedb($this->form['vigente_desde'], '/'),
+                'vigente_hasta' => $this->date_to_datedb($this->form['vigente_hasta'], '/'),
+                'resultado_inspeccion' => $this->form['resultado_inspeccion'],
+                'empresa' => strtoupper($this->form['empresa']),
+                'direccion' => strtoupper($this->form['direccion']),
+                'ambito' => strtoupper($this->form['ambito']),
+                'servicio' => strtoupper($this->form['servicio']),
+            ]);
+
+            session()->flash('message', 'El registro se ha guardado con éxito');
+
+            $this->redirect(route('dashboard'));
+
+        }catch (\Exception $e) {
+            session()->flash('error', $e->getMessage());
+        }
+    }
+
+    public function date_to_datedb($date, $delimiter = "-") {
+        list($d, $m, $y) = explode($delimiter, $date);
+        if(strlen($y) != 4) {
+            throw new \Exception("Formato de fecha inválido.");
+        }
+        return "$y-$m-$d";
     }
 
     public function render()
