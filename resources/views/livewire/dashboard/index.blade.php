@@ -75,8 +75,8 @@
                                         </a>
 
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDetalle({{ $key }})"><i class="fas fa-search"></i> Ver mas detalles</a>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-edit"></i> Editar registro</a>
+                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDetalle({{ $certificado }})"><i class="fas fa-search"></i> Ver mas detalles</a>
+                                            <a class="dropdown-item" href="{{ route('editar.certificado', [$certificado->placa]) }}"><i class="fas fa-edit"></i> Editar registro</a>
                                             <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDelete({{ $certificado }})"><i class="fas fa-trash"></i> Eliminar registro</a>
                                         </div>
                                     </div>
@@ -146,12 +146,12 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Información detallada</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Información detallada <span id="placa"></span></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" >
+                <div class="modal-body" id="detalles">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -176,8 +176,19 @@
                 $('#mensajeDelete').html(`Seguro(a) que desea eliminar <strong>${item.placa}</strong> de la base de datos?`);
                 $('#deleteModal').modal('show');
           },
-          showModalDetalle (key) {
-            @this.item_id = item.id;
+          showModalDetalle (item) {
+              $('#placa').html(`<strong>${item.placa}</strong>`);
+                $('#detalles').html(`
+                    <p><strong>Placa: </strong>${item.placa}</p>
+                    <p><strong>Codigo: </strong>${item.codigo}</p>
+                    <p><strong>Vigencia Desde: </strong>${item.vigente_desde}</p>
+                    <p><strong>Vigencia Hasta: </strong>${item.vigente_hasta}</p>
+                    <p><strong>Empresa: </strong>${item.empresa}</p>
+                    <p><strong>Dirección: </strong>${item.direccion}</p>
+                    <p><strong>Ámbito: </strong>${item.ambito}</p>
+                    <p><strong>Servicio: </strong>${item.servicio}</p>
+                    <p><strong>Resultado Inspección: </strong>${item.resultado_inspeccion}</p>
+                `);
               $('#modalDetalle').modal('show');
           }
       }

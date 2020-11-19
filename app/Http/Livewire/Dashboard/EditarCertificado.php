@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Dashboard;
 use App\Models\Certificado;
 use Livewire\Component;
 
-class AgregarCertificado extends Component
+class EditarCertificado extends Component
 {
     public $form = [
         'placa' => '',
@@ -19,10 +19,33 @@ class AgregarCertificado extends Component
         'servicio' => '',
     ];
 
+    public $certificado;
+
+    public function mount($placa)
+    {
+        $this->certificado = Certificado::wherePlaca($placa)->first();
+
+        if(!$this->certificado)
+        {
+            abort(404);
+        }
+
+        $this->form['placa'] = $this->certificado->placa;
+        $this->form['codigo'] = $this->certificado->codigo;
+        $this->form['vigente_desde'] = $this->certificado->vigente_desde;
+        $this->form['vigente_hasta'] = $this->certificado->vigente_hasta;
+        $this->form['resultado_inspeccion'] = $this->certificado->resultado_inspeccion;
+        $this->form['empresa'] = $this->certificado->empresa;
+        $this->form['direccion'] = $this->certificado->direccion;
+        $this->form['ambito'] = $this->certificado->ambito;
+        $this->form['servicio'] = $this->certificado->servicio;
+    }
+
     public function updated ($field) {
+
         $this->validateOnly($field, [
             'form.placa' => 'required',
-            'form.codigo' => 'required|unique:certificados,codigo',
+            'form.codigo' => 'required',
             'form.vigente_desde' => 'required|date_format:d/m/Y',
             'form.vigente_hasta' => 'required|date_format:d/m/Y',
             'form.resultado_inspeccion' => 'required',
@@ -33,7 +56,6 @@ class AgregarCertificado extends Component
         ], [
             'form.placa.required' => 'Debe ingresar la placa',
             'form.codigo.required' => 'Debe ingresar el codigo',
-            'form.codigo.unique' => 'El codigo ya se encuentra registrado',
             'form.vigente_desde.required' => 'Debe ingresar la fecha',
             'form.vigente_desde.date_format' => 'El formato de la fecha es invalido',
             'form.vigente_hasta.required' => 'Debe ingresar la fecha',
@@ -49,20 +71,18 @@ class AgregarCertificado extends Component
     public function guardar()
     {
         $this->validate([
-           'form.placa' => 'required',
-           'form.codigo' => 'required|unique:certificados,codigo',
-           'form.vigente_desde' => 'required|date_format:d/m/Y',
-           'form.vigente_hasta' => 'required|date_format:d/m/Y',
-           'form.resultado_inspeccion' => 'required',
-           'form.empresa' => 'required',
-           'form.direccion' => 'required',
-           'form.ambito' => 'required',
-           'form.servicio' => 'required',
+            'form.placa' => 'required',
+            'form.codigo' => 'required',
+            'form.vigente_desde' => 'required|date_format:d/m/Y',
+            'form.vigente_hasta' => 'required|date_format:d/m/Y',
+            'form.resultado_inspeccion' => 'required',
+            'form.empresa' => 'required',
+            'form.direccion' => 'required',
+            'form.ambito' => 'required',
+            'form.servicio' => 'required',
         ], [
-            'form.estado.required' => 'Debe seleccionar el estado',
             'form.placa.required' => 'Debe ingresar la placa',
             'form.codigo.required' => 'Debe ingresar el codigo',
-            'form.codigo.unique' => 'El codigo ya se encuentra registrado',
             'form.vigente_desde.required' => 'Debe ingresar la fecha',
             'form.vigente_desde.date_format' => 'El formato de la fecha es invalido',
             'form.vigente_hasta.required' => 'Debe ingresar la fecha',
@@ -78,7 +98,15 @@ class AgregarCertificado extends Component
 
         try {
 
-            Certificado::create([
+            if($this->certificado->codigo != $this->form['codigo'])
+            {
+                if(Certificado::whereCodigo($this->form['codigo'])->exists())    {
+                    $this->addError('form.codigo', 'El código ya se encuentra registrada');
+                    return;
+                }
+            }
+
+            Certificado::where('placa', $this->certificado->placa)->update([
                 'placa' => $this->form['placa'],
                 'codigo' => $this->form['codigo'],
                 'vigente_desde' => $this->date_to_datedb($this->form['vigente_desde'], '/'),
@@ -90,7 +118,7 @@ class AgregarCertificado extends Component
                 'servicio' => strtoupper($this->form['servicio']),
             ]);
 
-            session()->flash('message', 'El registro se ha guardado con éxito');
+            session()->flash('message', 'El registro se ha editado con éxito');
 
             $this->redirect(route('dashboard'));
 
@@ -107,10 +135,18 @@ class AgregarCertificado extends Component
         return "$y-$m-$d";
     }
 
+    public function date_from_datedb($date, $delimiter = "-") {
+        list($d, $m, $y) = explode($delimiter, $date);
+        if(strlen($y) != 4) {
+            throw new \Exception("Formato de fecha inválido.");
+        }
+        return "$d/$m/$y";
+    }
+
     public function render()
     {
-        return view('livewire.dashboard.agregar-certificado')
-            ->extends('layouts.dashboard')
-            ->section('content');
+        return view('livewire.dashboard.editar-certificado')
+                    ->extends('layouts.dashboard')
+                    ->section('content');
     }
 }

@@ -17,3 +17,4 @@ Route::get('/', \App\Http\Livewire\Frontend\Index::class)->name('principal');
 Route::get('/login', \App\Http\Livewire\LoginForm::class)->name('login');
 Route::get('/panel-administrador', \App\Http\Livewire\Dashboard\Index::class)->middleware('auth')->name('dashboard');
 Route::get('/panel-administrador/agregar-certificado', \App\Http\Livewire\Dashboard\AgregarCertificado::class)->middleware('auth')->name('nuevo.certificado');
+Route::get('/panel-administrador/editar-certificado/{placa}', \App\Http\Livewire\Dashboard\EditarCertificado::class)->middleware('auth')->name('editar.certificado');
