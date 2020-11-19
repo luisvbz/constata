@@ -86,7 +86,7 @@
                             <tr>
                                 <td colspan="6">
 
-                                    No hay registros
+                                    No hay registros disponibles
                                 </td>
                             </tr>
                         @endforelse
