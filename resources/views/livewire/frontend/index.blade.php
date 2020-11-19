@@ -29,6 +29,17 @@
                                     <p class="help-text text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <div class="text-center mb-2" wire:ignore>
+                                        {!! captcha_img('flat'); !!}
+                                    </div>
+                                    <label><strong>Ingrese el Captcha</strong></label>
+                                    <input wire:model.debounce.1000ms="captcha" type="text"
+                                           class="form-control form-control-user custom-control  @error('captcha') is-invalid @enderror">
+                                    @error('captcha')
+                                    <p class="help-text text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 @if(session()->has('error'))
                                     <div class="row">
                                         <div class="col-12">

@@ -10,6 +10,7 @@ class Index extends Component
     public $showResults = false;
     public $placa = '';
     public $certificados;
+    public $captcha = '';
 
     public function updatedPlaca()
     {
@@ -22,8 +23,11 @@ class Index extends Component
     public function consultar()
     {
         $this->validate(
-            ['placa' => 'required'],
-            ['placa.required' => 'Debe ingresar la placa']
+            ['placa' => 'required', 'captcha' => 'required|captcha'],
+            ['placa.required' => 'Debe ingresar la placa',
+             'captcha.required' => 'Debe ingresar el codigo captcha',
+             'captcha.captcha' => 'El código ingresado es incorrecto',
+             ]
         );
 
         $this->certificados = Certificado::wherePlaca($this->placa)->orderBy('vigente_hasta', 'DESC')->take(2)->get();
@@ -31,6 +35,7 @@ class Index extends Component
         if(count($this->certificados) == 0) {
             session()->flash('error', "La placa {$this->placa} no se ha encontrado!");
             $this->placa = '';
+            $this->captcha = '';
             return;
         }
 
@@ -40,6 +45,7 @@ class Index extends Component
     public function clear ()
     {
         $this->placa = '';
+        $this->captcha = '';
         $this->showResults = false;
     }
 
