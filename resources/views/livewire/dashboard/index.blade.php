@@ -5,9 +5,9 @@
             <a href="{{ route('nuevo.certificado') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-plus fa-sm text-white-50"></i> Agregar
             </a>
-           {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+           <a  href="{{ route('carga.masiva') }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                 <i class="fas fa-file-excel fa-sm text-white-50"></i> Carga Masiva
-            </a> --}}
+            </a>
         </div>
     </div>
     <!-- Content Row -->

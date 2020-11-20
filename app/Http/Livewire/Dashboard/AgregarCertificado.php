@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dashboard;
 
 use App\Models\Certificado;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class AgregarCertificado extends Component
@@ -78,6 +79,7 @@ class AgregarCertificado extends Component
 
         try {
 
+            DB::beginTransaction();
             Certificado::create([
                 'placa' => $this->form['placa'],
                 'codigo' => $this->form['codigo'],
@@ -89,6 +91,7 @@ class AgregarCertificado extends Component
                 'ambito' => strtoupper($this->form['ambito']),
                 'servicio' => strtoupper($this->form['servicio']),
             ]);
+            DB::commit();
 
             session()->flash('message', 'El registro se ha guardado con éxito');
 

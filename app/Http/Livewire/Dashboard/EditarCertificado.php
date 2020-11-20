@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dashboard;
 
 use App\Models\Certificado;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class EditarCertificado extends Component
@@ -106,6 +107,8 @@ class EditarCertificado extends Component
                 }
             }
 
+            DB::beginTransaction();
+
             Certificado::where('placa', $this->certificado->placa)->update([
                 'placa' => $this->form['placa'],
                 'codigo' => $this->form['codigo'],
@@ -117,6 +120,8 @@ class EditarCertificado extends Component
                 'ambito' => strtoupper($this->form['ambito']),
                 'servicio' => strtoupper($this->form['servicio']),
             ]);
+
+            DB::commit();
 
             session()->flash('message', 'El registro se ha editado con éxito');
 
