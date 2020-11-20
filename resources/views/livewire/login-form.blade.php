@@ -36,16 +36,16 @@
                                 </div>
                                 @enderror
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    Entrar
+                                   <h5>Entrar</h5>
                                 </button>
                                 <a href="/" type="submit" class="btn btn-success btn-user btn-block">
-                                    Ir a página principal
+                                    <h5>Ir a página principal</h5>
                                 </a>
                             </form>
                             <hr>
-                            <div class="text-center">
+                           {{-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Olvide mi contraseña!</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
