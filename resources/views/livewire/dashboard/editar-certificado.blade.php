@@ -165,7 +165,8 @@
                     // but we will just return 'D/M/YYYY' for simplicity
                     var day = date.getDate();
                     day = day < 10 ?`0${day}` : day;
-                    const month = date.getMonth() + 1;
+                    var month = date.getMonth() + 1;;
+                    month = month < 10 ?`0${month}` : month;
                     const year = date.getFullYear();
                     return `${day}/${month}/${year}`;
                 },
@@ -186,7 +187,8 @@
                     // but we will just return 'D/M/YYYY' for simplicity
                     var day = date.getDate();
                     day = day < 10 ? `0${day}` : day;
-                    const month = date.getMonth() + 1;
+                    var month = date.getMonth() + 1;;
+                    month = month < 10 ?`0${month}` : month;
                     const year = date.getFullYear();
                     return `${day}/${month}/${year}`;
                 },
