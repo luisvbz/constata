@@ -13,8 +13,8 @@
     <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <link href="{{ asset('frontend/css/custom.css')}}" rel="stylesheet">
     <link href="{{ asset('dashboard/css/sb-admin-2.css')}}" rel="stylesheet">
+    <link href="{{ asset('frontend/css/custom.css')}}" rel="stylesheet">
     @livewireStyles
 </head>
 

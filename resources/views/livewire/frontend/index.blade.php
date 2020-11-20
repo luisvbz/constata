@@ -15,9 +15,12 @@
                 <div class="row">
                     <div class="col-lg-6 d-none d-lg-block bg-login-image" style="border-radius: 10px 0px 0px 10px"></div>
                     <div class="col-lg-6 form-placa">
-                        <div class="p-5">
+                        <div class="text-center">
+                            <img src="/logo.png" style="height: 80px;"/>
+                        </div>
+                        <div class="p-4">
                             <div class="text-center">
-                                <h1 class="h5 text-gray-900 mb-4">CONSULTA DE CERTIFICADOS CITV</h1>
+                                <h1 class="h5 text-gray-900 mb-4"><strong>CONSULTA DE CERTIFICADOS CITV</strong></h1>
                             </div>
                             <form class="user" wire:submit.prevent="consultar">
                                 <div class="form-group">
@@ -67,7 +70,7 @@
         <div class="card shadow mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
                 <span><strong>RESULTADOS</strong></span>
-                <button wire:click="clear" class="btn btn-primary">Nueva Consulta</button>
+                <a href="/" class="btn btn-primary">Nueva Consulta</a>
             </div>
             <div class="card-body">
                 <div id="divDetalle" style="display: block;">

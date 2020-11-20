@@ -1,6 +1,9 @@
 html{line-height:1.15;-webkit-text-size-adjust:100%;position: relative;min-height: 100%;font-family: 'Lato', sans-serif;}
-body{margin:0;font-family: 'Lato', sans-serif !important;  }
-
+body{margin:0;font-family: 'Lato', sans-serif !important;color: #3b3b3b !important;  }
+table tr { color: #3b3b3b !important;}
+.table-bordered th, .table-bordered td {
+    border: 1px solid #8f8f8f;
+}
 .general-container {
     min-height: 100vh;
 }
