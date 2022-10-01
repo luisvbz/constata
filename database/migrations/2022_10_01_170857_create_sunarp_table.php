@@ -1,0 +1,77 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateSunarpTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('sunarp_cabeceras', function (Blueprint $table) {
+            $table->id();
+            $table->string('pais');
+            $table->string('entidad');
+            $table->string('titulo');
+            $table->string('firma');
+        });
+        Schema::create('sunarp_tarjetas', function (Blueprint $table) {
+            $table->id();
+            $table->string('pais');
+            $table->string('entidad');
+            $table->integer('codigo_verificacion', false, true);
+            $table->string('num_publicidad')->nullable();
+            $table->string('titulo');
+            $table->date('fecha_titulo');
+            $table->string('zona_registral', 5);
+            $table->string('sede_registral', 25);
+            $table->string('placa');
+            $table->string('partida_registral', 20);
+            $table->string('DUA_DAM', 30);
+            $table->string('categoria', 20);
+            $table->string('marca', 30);
+            $table->string('modelo', 30);
+            $table->string('color', 30);
+            $table->string('VIM', 30);
+            $table->string('serie_chasis', 30);
+            $table->string('num_motor', 40);
+            $table->string('carroceria', 50);
+            $table->string('potencia_motor', 30);
+            $table->string('form_rodante', 30);
+            $table->string('combustible', 30);
+            $table->string('version', 30);
+            $table->year('anio_fabricacion');
+            $table->year('anio_modelo');
+            $table->string('asientos', 2);
+            $table->string('pasajeros', 2);
+            $table->string('ruedas', 2);
+            $table->string('ejes', 2);
+            $table->string('cilindros', 2);
+            $table->decimal('longitud');
+            $table->decimal('altura');
+            $table->decimal('ancho');
+            $table->decimal('cilindrada');
+            $table->decimal('peso_bruto');
+            $table->decimal('peso_neto');
+            $table->decimal('carga_util');
+            $table->string('firma');
+            $table->dateTime('fecha');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('sunarp');
+    }
+}
