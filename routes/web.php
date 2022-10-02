@@ -22,6 +22,9 @@ Route::get('/panel-administrador/perfil', \App\Http\Livewire\Dashboard\Perfil::c
 Route::get('/panel-administrador/carga-masiva', \App\Http\Livewire\Dashboard\CargaMasiva::class)->middleware('auth')->name('carga.masiva');
 Route::get('/panel-administrador/agregar-certificado', \App\Http\Livewire\Dashboard\AgregarCertificado::class)->middleware('auth')->name('nuevo.certificado');
 Route::get('/panel-administrador/editar-certificado/{placa}', \App\Http\Livewire\Dashboard\EditarCertificado::class)->middleware('auth')->name('editar.certificado');
+Route::get('/panel-administrador/sunarp', \App\Http\Livewire\Dashboard\Sunarp::class)->middleware('auth')->name('sunarp');
+Route::get('/panel-administrador/sunarp/nuevo', \App\Http\Livewire\Dashboard\SunarpNuevo::class)->middleware('auth')->name('sunarp.nuevo');
+Route::get('/panel-administrador/sunarp/editar/{codigo}', \App\Http\Livewire\Dashboard\SunarpEditar::class)->middleware('auth')->name('sunarp.editar');
 
 Route::get('/panel-administrador/descargar-formato',[ReportesController::class, 'descargarFormato'])->name('descargar.formato');
 

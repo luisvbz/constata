@@ -31,7 +31,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-car-alt"></i>
             </div>
@@ -45,6 +45,11 @@
             <a class="nav-link" href="{{ route('dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Certificados</span></a>
+        </li>
+        <li class="nav-item @if(\Route::currentRouteName() == 'sunarp') active @endif">
+            <a class="nav-link" href="{{ route('sunarp') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Sunarp</span></a>
         </li>
 
         <!-- Divider -->
@@ -144,6 +149,7 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('dashboard/js/sb-admin-2.min.js') }}"></script>
+<script src="{{ asset('dashboard/js/moment.min.js') }}"></script>
 <script src="{{ asset('dashboard/js/pikaday.js') }}"></script>
 <script src="{{ asset('dashboard/js/alpine.min.js') }}"></script>
 

@@ -18,15 +18,16 @@ class CreateSunarpTable extends Migration
             $table->string('pais');
             $table->string('entidad');
             $table->string('titulo');
-            $table->string('firma');
+            $table->string('firma')->nullable();
         });
         Schema::create('sunarp_tarjetas', function (Blueprint $table) {
             $table->id();
             $table->string('pais');
             $table->string('entidad');
+            $table->string('titulo');
             $table->integer('codigo_verificacion', false, true);
             $table->string('num_publicidad')->nullable();
-            $table->string('titulo');
+            $table->string('num_titulo');
             $table->date('fecha_titulo');
             $table->string('zona_registral', 5);
             $table->string('sede_registral', 25);
@@ -72,6 +73,7 @@ class CreateSunarpTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sunarp');
+        Schema::dropIfExists('sunarp_cabeceras');
+        Schema::dropIfExists('sunarp_tarjetas');
     }
 }
