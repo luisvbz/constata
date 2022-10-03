@@ -61,7 +61,7 @@ class CreateSunarpTable extends Migration
             $table->decimal('peso_neto');
             $table->decimal('carga_util');
             $table->string('firma');
-            $table->dateTime('fecha');
+            $table->string('fecha');
             $table->timestamps();
         });
     }

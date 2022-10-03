@@ -20,6 +20,7 @@
     <link href="{{ asset('dashboard/css/sb-admin-2.css')}}" rel="stylesheet">
     <link href="{{ asset('dashboard/css/custom.css')}}" rel="stylesheet">
     <link href="{{ asset('dashboard/css/pikaday.css')}}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.3.0/air-datepicker.min.css" rel="stylesheet">
     @livewireStyles
 
 </head>
@@ -140,7 +141,6 @@
     <i class="fas fa-angle-up"></i>
 </a>
 <!-- Bootstrap core JavaScript-->
-@livewireScripts
 <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -151,8 +151,10 @@
 <script src="{{ asset('dashboard/js/sb-admin-2.min.js') }}"></script>
 <script src="{{ asset('dashboard/js/moment.min.js') }}"></script>
 <script src="{{ asset('dashboard/js/pikaday.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.3.0/air-datepicker.min.js"></script>
 <script src="{{ asset('dashboard/js/alpine.min.js') }}"></script>
 
+@livewireScripts
 @stack('js')
 </body>
 

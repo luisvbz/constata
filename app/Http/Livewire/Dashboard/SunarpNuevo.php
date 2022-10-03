@@ -3,10 +3,14 @@
 namespace App\Http\Livewire\Dashboard;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Models\SunarpCabecera;
+use App\Models\SunarpTarjeta;
 
 class SunarpNuevo extends Component
 {
+    use WithFileUploads;
+    
     public $form = [
         'pais' => '',
         'entidad' => '',
@@ -163,6 +167,52 @@ class SunarpNuevo extends Component
     public function save()
     {
         $this->validate();
+
+        // Save signature
+        $this->form['firma']->store('public');
+
+        SunarpTarjeta::create([
+            'pais' => $this->form['pais'],
+            'entidad' => $this->form['entidad'],
+            'titulo' => $this->form['titulo'],
+            'codigo_verificacion' => $this->form['codigo_verificacion'],
+            'num_publicidad' => $this->form['num_publicidad'] ?: null,
+            'num_titulo' => $this->form['num_titulo'],
+            'fecha_titulo' => $this->form['fecha_titulo'],
+            'zona_registral' => $this->form['zona_registral'],
+            'sede_registral' => $this->form['sede_registral'],
+            'placa' => $this->form['placa'],
+            'partida_registral' => $this->form['partida_registral'],
+            'DUA_DAM' => $this->form['DUA_DAM'],
+            'categoria' => $this->form['categoria'],
+            'marca' => $this->form['marca'],
+            'modelo' => $this->form['modelo'],
+            'color' => $this->form['color'],
+            'VIM' => $this->form['VIM'],
+            'serie_chasis' => $this->form['serie_chasis'],
+            'num_motor' => $this->form['num_motor'],
+            'carroceria' => $this->form['carroceria'],
+            'potencia_motor' => $this->form['potencia_motor'],
+            'form_rodante' => $this->form['form_rodante'],
+            'combustible' => $this->form['combustible'],
+            'version' => $this->form['version'],
+            'anio_fabricacion' => $this->form['anio_fabricacion'],
+            'anio_modelo' => $this->form['anio_modelo'],
+            'asientos' => $this->form['asientos'],
+            'pasajeros' => $this->form['pasajeros'],
+            'ruedas' => $this->form['ruedas'],
+            'ejes' => $this->form['ejes'],
+            'cilindros' => $this->form['cilindros'],
+            'longitud' => $this->form['longitud'],
+            'altura' => $this->form['altura'],
+            'ancho' => $this->form['ancho'],
+            'cilindrada' => $this->form['cilindrada'],
+            'peso_bruto' => $this->form['peso_bruto'],
+            'peso_neto' => $this->form['peso_neto'],
+            'carga_util' => $this->form['carga_util'],
+            'firma' => $this->form['firma'],
+            'fecha' => $this->form['fecha'],
+        ]);
     }
 
     public function render()
