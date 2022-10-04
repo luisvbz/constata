@@ -26,7 +26,9 @@ class SunarpTarjeta extends Model
         'categoria',
         'marca',
         'modelo',
-        'color',
+        'color1',
+        'color2',
+        'color3',
         'VIM',
         'serie_chasis',
         'num_motor',
@@ -49,6 +51,7 @@ class SunarpTarjeta extends Model
         'peso_bruto',
         'peso_neto',
         'carga_util',
+        'condicion',
         'firma',
         'fecha',
     ];
