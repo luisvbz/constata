@@ -52,7 +52,7 @@ class SunarpNuevo extends Component
         'peso_bruto' => '',
         'peso_neto' => '',
         'carga_util' => '',
-        'condicion' => '',
+        'condicion' => 'SIN DEFINIR',
         'firma' => '',
         'fecha' => '',
     ];
@@ -60,6 +60,7 @@ class SunarpNuevo extends Component
     public function mount()
     {
         $cabeceras = SunarpCabecera::first();
+        $this->form['codigo_verificacion'] = create_code(8);
         $this->form['pais'] = $cabeceras->pais;
         $this->form['entidad'] = $cabeceras->entidad;
         $this->form['titulo'] = $cabeceras->titulo;
@@ -156,6 +157,7 @@ class SunarpNuevo extends Component
             'form.peso_neto.numeric' => 'El valor debe ser numérico.',
             'form.carga_util.required' => 'La carga util es requerida.',
             'form.carga_util.numeric' => 'El valor debe ser numérico.',
+            'form.condicion.required' => 'La condición es requerida.',
             'form.firma.required' => 'La firma es requerida.',
             'form.firma.image' => 'El formato de la imagen no es válido.',
             'form.firma.max' => 'La imagen debe pesar hasta 1MB.',
@@ -168,7 +170,10 @@ class SunarpNuevo extends Component
         $this->validate();
 
         // Save signature
-        $this->form['firma']->store('public');
+        $path = $this->form['firma']->store('public');
+        // path publico
+        $pathReal = explode("public/", $path)[1];
+        $url = url("/storage/" . $pathReal);
 
         SunarpTarjeta::create([
             'pais' => $this->form['pais'],
@@ -177,26 +182,28 @@ class SunarpNuevo extends Component
             'codigo_verificacion' => $this->form['codigo_verificacion'],
             'num_publicidad' => $this->form['num_publicidad'] ?: null,
             'num_titulo' => $this->form['num_titulo'],
-            'fecha_titulo' => $this->form['fecha_titulo'],
+            'fecha_titulo' => date_to_datedb($this->form['fecha_titulo'], '/'),
             'zona_registral' => $this->form['zona_registral'],
             'sede_registral' => $this->form['sede_registral'],
             'placa' => $this->form['placa'],
             'partida_registral' => $this->form['partida_registral'],
             'DUA_DAM' => $this->form['DUA_DAM'],
-            'categoria' => $this->form['categoria'],
+            'categoria' => $this->form['categoria'] ?: null,
             'marca' => $this->form['marca'],
             'modelo' => $this->form['modelo'],
-            'color' => $this->form['color'],
+            'color1' => $this->form['color1'],
+            'color2' => $this->form['color2'] ?: null,
+            'color3' => $this->form['color3'] ?: null,
             'VIM' => $this->form['VIM'],
             'serie_chasis' => $this->form['serie_chasis'],
             'num_motor' => $this->form['num_motor'],
             'carroceria' => $this->form['carroceria'],
-            'potencia_motor' => $this->form['potencia_motor'],
-            'form_rodante' => $this->form['form_rodante'],
+            'potencia_motor' => $this->form['potencia_motor'] ?: null,
+            'form_rodante' => $this->form['form_rodante'] ?: null,
             'combustible' => $this->form['combustible'],
-            'version' => $this->form['version'],
+            'version' => $this->form['version'] ?: null,
             'anio_fabricacion' => $this->form['anio_fabricacion'],
-            'anio_modelo' => $this->form['anio_modelo'],
+            'anio_modelo' => $this->form['anio_modelo'] ?: null,
             'asientos' => $this->form['asientos'],
             'pasajeros' => $this->form['pasajeros'],
             'ruedas' => $this->form['ruedas'],
@@ -205,11 +212,13 @@ class SunarpNuevo extends Component
             'longitud' => $this->form['longitud'],
             'altura' => $this->form['altura'],
             'ancho' => $this->form['ancho'],
-            'cilindrada' => $this->form['cilindrada'],
+            'cilindrada' => $this->form['cilindrada'] ?: null,
             'peso_bruto' => $this->form['peso_bruto'],
             'peso_neto' => $this->form['peso_neto'],
             'carga_util' => $this->form['carga_util'],
-            'firma' => $this->form['firma'],
+            'condicion' => $this->form['condicion'],
+            'firma' => $url,
+            'firma_file' => $path,
             'fecha' => $this->form['fecha'],
         ]);
     }

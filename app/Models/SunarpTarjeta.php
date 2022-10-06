@@ -53,6 +53,7 @@ class SunarpTarjeta extends Model
         'carga_util',
         'condicion',
         'firma',
+        'firma_file',
         'fecha',
     ];
 }

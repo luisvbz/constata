@@ -64,6 +64,7 @@ class CreateSunarpTable extends Migration
             $table->decimal('carga_util');
             $table->string('condicion');
             $table->string('firma');
+            $table->string('firma_file');
             $table->string('fecha');
             $table->timestamps();
         });

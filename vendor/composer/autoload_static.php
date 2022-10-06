@@ -95,6 +95,7 @@ class ComposerStaticInit10b9854049255be95cf65d44c959d097
         '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
         '5e8fe2a5ffaded85af682684fe3bbf5a' => __DIR__ . '/..' . '/mews/captcha/src/helpers.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+        '6d394c3a532652dafb4dd296ba6a3f0b' => __DIR__ . '/../..' . '/app/Http/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -621,6 +622,9 @@ class ComposerStaticInit10b9854049255be95cf65d44c959d097
         'App\\Http\\Livewire\\Dashboard\\EditarCertificado' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashboard/EditarCertificado.php',
         'App\\Http\\Livewire\\Dashboard\\Index' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashboard/Index.php',
         'App\\Http\\Livewire\\Dashboard\\Perfil' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashboard/Perfil.php',
+        'App\\Http\\Livewire\\Dashboard\\Sunarp' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashboard/Sunarp.php',
+        'App\\Http\\Livewire\\Dashboard\\SunarpEditar' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashboard/SunarpEditar.php',
+        'App\\Http\\Livewire\\Dashboard\\SunarpNuevo' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashboard/SunarpNuevo.php',
         'App\\Http\\Livewire\\Frontend\\Index' => __DIR__ . '/../..' . '/app/Http/Livewire/Frontend/Index.php',
         'App\\Http\\Livewire\\LoginForm' => __DIR__ . '/../..' . '/app/Http/Livewire/LoginForm.php',
         'App\\Http\\Livewire\\Logout' => __DIR__ . '/../..' . '/app/Http/Livewire/Logout.php',
@@ -633,6 +637,8 @@ class ComposerStaticInit10b9854049255be95cf65d44c959d097
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Certificado' => __DIR__ . '/../..' . '/app/Models/Certificado.php',
+        'App\\Models\\SunarpCabecera' => __DIR__ . '/../..' . '/app/Models/SunarpCabecera.php',
+        'App\\Models\\SunarpTarjeta' => __DIR__ . '/../..' . '/app/Models/SunarpTarjeta.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-12">
+                        {{--<div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Código de Verificación</strong></label>
                                 <input wire:model.lazy="form.codigo_verificacion" class="form-control @error('form.codigo_verificacion') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Ingrese el cód. de verificación"/>
@@ -20,7 +20,7 @@
                                     <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Nº de publicidad</strong></label>
@@ -160,14 +160,31 @@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
-                                <label><strong>Color:</strong></label>
-                                <input type="text" wire:model.lazy="form.color" class="form-control text-uppercase @error('form.color') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Color" />
-                                @error('form.color')
+                                <label><strong>Color 1:</strong></label>
+                                <input type="text" wire:model.lazy="form.color1" class="form-control text-uppercase @error('form.color1') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Color" />
+                                @error('form.color1')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="form-group">
+                                <label><strong>Color 2:</strong></label>
+                                <input type="text" wire:model.lazy="form.color2" class="form-control text-uppercase @error('form.color2') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Color" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="form-group">
+                                <label><strong>Color 3:</strong></label>
+                                <input type="text" wire:model.lazy="form.color3" class="form-control text-uppercase @error('form.color3') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Color" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-top my-3"></div>
+
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
@@ -241,9 +258,6 @@
                             <div class="form-group">
                                 <label><strong>Versión:</strong></label>
                                 <input type="text" wire:model.lazy="form.version" class="form-control text-uppercase @error('form.version') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Versión" />
-                                @error('form.version')
-                                <p class="help-text text-danger">{{ $message }}</p>
-                                @enderror
                             </div>
                         </div>
                     </div>
@@ -261,9 +275,6 @@
                             <div class="form-group">
                                 <label><strong>Año del Modelo:</strong></label>
                                 <input id="anio_mod" type="text" wire:model.lazy="form.anio_modelo" class="form-control @error('form.anio_modelo') is-invalid @enderror" placeholder="Año del modelo" readonly/>
-                                @error('form.anio_modelo')
-                                <p class="help-text text-danger">{{ $message }}</p>
-                                @enderror
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12">
@@ -351,9 +362,6 @@
                             <div class="form-group">
                                 <label><strong>Cilindrada:</strong></label>
                                 <input type="text" wire:model.lazy="form.cilindrada" class="form-control @error('form.cilindrada') is-invalid @enderror" placeholder="Cilindrada" />
-                                @error('form.cilindrada')
-                                <p class="help-text text-danger">{{ $message }}</p>
-                                @enderror
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-12">
@@ -387,6 +395,15 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
+                                <label><strong>Condición:</strong></label>
+                                <input type="text" wire:model.lazy="form.condicion" class="form-control @error('form.condicion') is-invalid @enderror" placeholder="Carga útil" />
+                                @error('form.condicion')
+                                <p class="help-text text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-group">
                                 <label><strong>Firma:</strong></label>
                                 <input type="file" wire:model.lazy="form.firma" class="form-control @error('form.firma') is-invalid @enderror" accept=".png,.jpeg,.bmp,.gif" />
                                 @error('form.firma')
@@ -394,6 +411,8 @@
                                 @enderror
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Fecha y Hora:</strong></label>

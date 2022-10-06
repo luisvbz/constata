@@ -94,4 +94,5 @@ return array(
     '40275907c8566c390185147049ef6e5d' => $vendorDir . '/livewire/livewire/src/helpers.php',
     '5e8fe2a5ffaded85af682684fe3bbf5a' => $vendorDir . '/mews/captcha/src/helpers.php',
     'ec07570ca5a812141189b1fa81503674' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+    '6d394c3a532652dafb4dd296ba6a3f0b' => $baseDir . '/app/Http/helpers.php',
 );
