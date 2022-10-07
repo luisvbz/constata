@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class
 
     ],
 

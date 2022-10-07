@@ -56,31 +56,31 @@
                             <th scope="col">Marca/Modelo</th>
                             <th scope="col">Sede Registral</th>
                             <th scope="col">Nº Título</th>
-                            <th scope="col">Fecha</th>
+                            <th scope="col">Fecha Título</th>
                             <td></td>
                         </tr>
                         </thead>
                         <tbody x-data="dataItems()">
-                        @forelse ($certificados as $key => $certificado)
+                        @forelse ($certificados as $key => $tarjeta)
                             <tr>
-                                <td class="text-center">
-                                    <i rel="tooltip" title="@if($certificado->state) Vigente @else No vigente @endif" class="fas fa-circle @if($certificado->state) text-success @else text-danger @endif"></i>
+                                <td class="text-left">
+                                    {{ $tarjeta->codigo_verificacion }}
                                 </td>
-                                <td>{{ $certificado->placa }}</td>
-                                <td>{{ $certificado->codigo }}</td>
-                                <td class="text-center">{{ $certificado->vigente_desde | dateFormat }}</td>
-                                <td class="text-center">{{ $certificado->vigente_hasta | dateFormat }}</td>
-                                <td>{{ $certificado->empresa }}</td>
+                                <td>{{ $tarjeta->placa }}</td>
+                                <td>{{ $tarjeta->marca }}/{{ $tarjeta->modelo }}</td>
+                                <td class="text-left">{{ $tarjeta->sede_registral }}</td>
+                                <td class="text-left">{{ $tarjeta->num_titulo }}</td>
+                                <td>{{ $tarjeta->fecha_titulo | dateFormat }}</td>
                                 <td>
                                     <div class="dropdown show">
                                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-bars"></i>
                                         </a>
 
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDetalle({{ $certificado }})"><i class="fas fa-search"></i> Ver mas detalles</a>
-                                            <a class="dropdown-item" href="{{ route('editar.certificado', [$certificado->placa]) }}"><i class="fas fa-edit"></i> Editar registro</a>
-                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDelete({{ $certificado }})"><i class="fas fa-trash"></i> Eliminar registro</a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDetalle({{ $tarjeta }})"><i class="fas fa-search"></i> Ver mas detalles</a>
+                                            <a class="dropdown-item" href="{{ route('editar.certificado', [$tarjeta->placa]) }}"><i class="fas fa-edit"></i> Editar registro</a>
+                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDelete({{ $tarjeta }})"><i class="fas fa-trash"></i> Eliminar registro</a>
                                         </div>
                                     </div>
                                 </td>
@@ -149,14 +149,16 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Información detallada <span id="placa"></span></h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tarjeta Sunarp <span id="placa"></span></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="detalles">
+                <div class="modal-body">
+                    <iframe src="" frameborder="0" id="pdf-iframe" style="width:100%;height:400px;"></iframe>
                 </div>
                 <div class="modal-footer">
+                    <a id="link-download" href="" class="btn btn-primary" download=""><i class="fas fa-download"></i> Descargar</a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -170,31 +172,24 @@
     });
 
     function dataItems() {
-      return {
-          key: '',
-          itemSel: {},
-          showModalDelete(item)
-          {
+        return {
+            key: '',
+            itemSel: {},
+            showModalDelete(item)
+            {
                 @this.item_id = item.id;
                 $('#mensajeDelete').html(`Seguro(a) que desea eliminar <strong>${item.placa}</strong> de la base de datos?`);
                 $('#deleteModal').modal('show');
-          },
-          showModalDetalle (item) {
-              $('#placa').html(`<strong>${item.placa}</strong>`);
-                $('#detalles').html(`
-                    <p><strong>Placa: </strong>${item.placa}</p>
-                    <p><strong>Codigo: </strong>${item.codigo}</p>
-                    <p><strong>Vigencia Desde: </strong>${item.vigente_desde}</p>
-                    <p><strong>Vigencia Hasta: </strong>${item.vigente_hasta}</p>
-                    <p><strong>Empresa: </strong>${item.empresa}</p>
-                    <p><strong>Dirección: </strong>${item.direccion}</p>
-                    <p><strong>Ámbito: </strong>${item.ambito}</p>
-                    <p><strong>Servicio: </strong>${item.servicio}</p>
-                    <p><strong>Resultado Inspección: </strong>${item.resultado_inspeccion}</p>
-                `);
-              $('#modalDetalle').modal('show');
-          }
-      }
+            },
+            showModalDetalle (item) {
+                @this.getSunarpPdf(item).then(rs => {
+                    $('#link-download').attr('href', rs);
+                    $('#link-download').attr('download', item.codigo_verificacion);
+                    $('#pdf-iframe').attr('src', rs);
+                    $('#modalDetalle').modal('show');
+                })
+            }
+        }
     }
 </script>
 @endpush

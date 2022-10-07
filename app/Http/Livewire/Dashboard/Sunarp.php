@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dashboard;
 
+use PDF;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\SunarpTarjeta;
@@ -39,20 +40,11 @@ class Sunarp extends Component
         $this->resetPage();
     }
 
-    public function eliminarRegistro()
+    public function getSunarpPdf($item)
     {
-        /* try{
-            $cert = Certificado::find($this->item_id);
-            $cert->delete();
-
-            $this->item_id = '';
-            $this->dispatchBrowserEvent('item-deleted');
-            session()->flash('message', 'El registro se ha eliminado con éxito!');
-
-        }catch (\Exception $e)
-        {
-            session()->flash('error', $e->getMessage());
-        } */
+        $pdf = PDF::loadView('pdfs.sunarp', $item);
+        $pdf->save(storage_path('/app/public/pdfs/'.$item['codigo_verificacion'].'.pdf'));
+        return url('/storage/pdfs/'.$item['codigo_verificacion'].'.pdf');
     }
     
     public function render()

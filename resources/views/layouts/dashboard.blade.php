@@ -152,7 +152,7 @@
 <script src="{{ asset('dashboard/js/moment.min.js') }}"></script>
 <script src="{{ asset('dashboard/js/pikaday.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.3.0/air-datepicker.min.js"></script>
-<script src="{{ asset('dashboard/js/alpine.min.js') }}"></script>
+<script src="{{ asset('dashboard/js/alpine.min.js') }}" defer></script>
 
 @livewireScripts
 @stack('js')
