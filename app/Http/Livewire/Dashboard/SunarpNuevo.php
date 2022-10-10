@@ -184,7 +184,7 @@ class SunarpNuevo extends Component
             'num_titulo' => $this->form['num_titulo'],
             'fecha_titulo' => date_to_datedb($this->form['fecha_titulo'], '/'),
             'zona_registral' => $this->form['zona_registral'],
-            'sede_registral' => $this->form['sede_registral'],
+            'sede_registral' => strtoupper($this->form['sede_registral']),
             'placa' => $this->form['placa'],
             'partida_registral' => $this->form['partida_registral'],
             'DUA_DAM' => $this->form['DUA_DAM'],
