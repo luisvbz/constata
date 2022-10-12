@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SunarpCabecera extends Model
+class SunarpFirma extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
-    protected $table = 'sunarp_cabeceras';
+    protected $table = 'sunarp_firmas';
     protected $fillable = [
-        'pais',
-        'entidad',
-        'titulo',
-        'codigo_verificacion',
-        'partida_registral',
-        'num_titulo',
+        'nombre_firma',
+        'firma',
+        'firma_file',
+        'predeterminada',
     ];
 }

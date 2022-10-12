@@ -39,8 +39,8 @@
             <td valign="middle" style="color:#222;line-height:1.5;">
                <div>&nbsp;</div> 
                <div>Código de Verificación: {{$codigo_verificacion}}</div> 
-               <div>Título Nº: {{$num_titulo}}</div> 
-               <div>Fecha: {{$fecha}}</div> 
+               <div>Título Nº: {{$num_titulo}}-{{ $anio_titulo }}</div> 
+               <div>Fecha: {{$fecha}}</div>
             </td>
             <td width="30%">
                 <img src="{{ base_path('/resources/images/sunarp_peru.png') }}" width="180px" alt="Sunarp">
@@ -56,13 +56,17 @@
         <div style="font-size: 11pt;color: #666;">SEDE REGISTRAL - {{ $sede_registral }}</div>
     </div>
 
+    @if ($placa_anterior)
+    <table class="table" cellpadding="0" cellspacing="0" style="margin-bottom: 20px;">
+    @else
     <table class="table" cellpadding="0" cellspacing="0" style="margin-bottom: 60px;">
+    @endif
         <tr>
-            <td valign="middle" style="line-height: 2; color: #000;">
+            <td valign="top" style="line-height: 2; color: #000;">
                <div><strong>Partida Registral:</strong> {{ $partida_registral }}</div> 
                <div><strong>DUA/DAM:</strong> {{ $DUA_DAM }}</div> 
-               <div><strong>Título:</strong> {{ $num_titulo }}</div> 
-               <div><strong>Fecha del Título:</strong> {{ $fecha_titulo }}</div> 
+               <div><strong>Título:</strong>{{ $anio_titulo }}-{{ $num_titulo }}</div> 
+               <div><strong>Fecha del Título:</strong> {{ $fecha | dateFormat }}</div> 
             </td>
             <td width="40%" align="center" valign="top">
                 <table class="table" style="color: #000;">
@@ -73,9 +77,21 @@
                     </tr>
                     <tr>
                         <td style="line-height: 2; text-align: center; font-size: 14pt; background-color: #fff;">
-                            <h1>{{ $placa }}</h1>
+                            <h1>{{ format_placa($placa) }}</h1>
                         </td>
                     </tr>
+                    @if ($placa_anterior)
+                    <tr>
+                        <td style="height:25px;">
+                            <div><strong>Placa Anterior Nº</strong></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="line-height: 2; text-align: center; font-size: 10pt;">
+                            <div>{{ format_placa($placa_anterior) }}</div>
+                        </td>
+                    </tr>
+                    @endif
                 </table>
             </td>
         </tr>
@@ -98,7 +114,7 @@
             <td width="40%" style="color:#222;padding-left: 2px;padding-bottom:4px;">
                 <div style="font-size: 13pt;font-weight: bold; line-height: 1.5;">Datos del Vehículo</div>
             </td>
-            <td></td>
+            <td align="right" style="color:#bbb;">{{ create_code(10) }}</td>
         </tr>
         <tr>
             <td width="40%">
@@ -254,7 +270,7 @@
 
     <table class="table" style="margin-top: 5px;">
         <tr>
-            <td align="center" width="60%" style="height: 50px;background-color: #fff;">
+            <td align="left" width="60%" style="height: 45px;background-color: #fff;">
                 @php
                 $pdf417 = new BigFish\PDF417\PDF417();
                 $data = $pdf417->encode('!ZONA REGISTRAL Nº {{ $zona_registral }}!SEDE REGISTRAL - {{ $sede_registral }}!{{ $placa }}!{{ $partida_registral }}!{{ $DUA_DAM }}!{{ $num_titulo }}!{{ $fecha_titulo }}!{{ $marca }}!{{ $modelo }}!{{ $VIM }}!{{ $serie_chasis }}');
@@ -264,10 +280,10 @@
                 ]);
                 $img = $renderer->render($data);
                 @endphp
-                <img src="{{ $img->encoded }}" alt="QrCode" width="420" height="85">
+                <img src="{{ $img->encoded }}" alt="QrCode" width="420" height="80">
             </td>
             <td align="center">
-                <img src="{{ $firma }}" alt="Firma" width="200">
+                <img src="{{ $firma }}" alt="Firma" width="190">
             </td>
         </tr>
     </table>

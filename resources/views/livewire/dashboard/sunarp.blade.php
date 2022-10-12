@@ -5,7 +5,7 @@
             <a href="{{ route('sunarp.nuevo') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-plus fa-sm text-white-50"></i> Nueva Tarjeta
             </a>
-            <a href="{{ route('nuevo.certificado') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <a href="{{ route('sunarp.config') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-cog fa-sm text-white-50"></i> Configuración
             </a>
             {{--<a  href="{{ route('carga.masiva') }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
@@ -38,6 +38,13 @@
             </div>
         </div>
     @endif
+    <div class="row" wire:loading wire:target="getSunarpPdf">
+        <div class="col pr-4">
+            <div class="alert alert-info">
+                <h5>Generando tarjeta Sunarp, espere por favor <i class="fas fa-spinner fa-spin"></i></h5>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="card shadow mb-4">
@@ -51,12 +58,12 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th scope="col">Cód. Verificación</th>
+                            <th scope="col">Código</th>
                             <th scope="col">Placa</th>
                             <th scope="col">Marca/Modelo</th>
                             <th scope="col">Sede Registral</th>
                             <th scope="col">Nº Título</th>
-                            <th scope="col">Fecha Título</th>
+                            <th scope="col">Fecha</th>
                             <td></td>
                         </tr>
                         </thead>
@@ -69,8 +76,8 @@
                                 <td>{{ $tarjeta->placa }}</td>
                                 <td>{{ $tarjeta->marca }}/{{ $tarjeta->modelo }}</td>
                                 <td class="text-left">{{ $tarjeta->sede_registral }}</td>
-                                <td class="text-left">{{ $tarjeta->num_titulo }}</td>
-                                <td>{{ $tarjeta->fecha_titulo | dateFormat }}</td>
+                                <td class="text-left">{{ $tarjeta->num_titulo }}-{{ $tarjeta->anio_titulo }}</td>
+                                <td>{{ $tarjeta->fecha | dateFormat }}</td>
                                 <td>
                                     <div class="dropdown show">
                                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,8 +85,8 @@
                                         </a>
 
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDetalle({{ $tarjeta }})"><i class="fas fa-search"></i> Ver mas detalles</a>
-                                            <a class="dropdown-item" href="{{ route('editar.certificado', [$tarjeta->placa]) }}"><i class="fas fa-edit"></i> Editar registro</a>
+                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDetalle({{ $tarjeta }})"><i class="fas fa-search"></i> Ver tarjeta</a>
+                                            <a class="dropdown-item" href="{{ route('sunarp.editar', [$tarjeta->codigo_verificacion]) }}"><i class="fas fa-edit"></i> Editar registro</a>
                                             <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDelete({{ $tarjeta }})"><i class="fas fa-trash"></i> Eliminar registro</a>
                                         </div>
                                     </div>

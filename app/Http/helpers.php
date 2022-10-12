@@ -36,3 +36,11 @@ function date_to_datedb($date, $delimiter = '-')
   }
   return "$y-$m-$d";
 }
+
+function format_placa($placa)
+{
+  if (!str_contains($placa, '-')) {
+    $placa = implode('-', (str_split($placa, 3)));
+  }
+  return $placa;
+}

@@ -12,45 +12,45 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        {{--<div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Código de Verificación</strong></label>
-                                <input wire:model.lazy="form.codigo_verificacion" class="form-control @error('form.codigo_verificacion') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Ingrese el cód. de verificación"/>
+                                <input wire:model.lazy="form.codigo_verificacion" class="form-control @error('form.codigo_verificacion') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Ingrese el cód. de verificación" readonly/>
                                 @error('form.codigo_verificacion')
                                     <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                        </div>--}}
-                        <div class="col-lg-3 col-md-3 col-sm-12">
+                        </div>
+                        {{--<div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
-                                <label><strong>Nº de publicidad</strong></label>
+                                <label><strong>Nº de publicidad <small>(Opcional)</small></strong></label>
                                 <input wire:model.lazy="form.num_publicidad" class="form-control @error('form.num_publicidad') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Nº de publicidad"/>
                                 @error('form.num_publicidad')
                                     <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12">
+                        </div>--}}
+                        <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Título Nº</strong></label>
-                                <input wire:model.lazy="form.num_titulo" class="form-control  @error('form.num_titulo') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Título Nº"/>
+                                <input wire:model.lazy="form.num_titulo" class="form-control  @error('form.num_titulo') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Título Nº" readonly/>
                                 @error('form.num_titulo')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
-                                <label><strong>Fecha del Título</strong></label>
-                                <input id="fecha_titulo" wire:model.lazy="form.fecha_titulo" class="form-control  @error('form.fecha_titulo') is-invalid @enderror" placeholder="dd/mm/yyyy" readonly />
-                                @error('form.fecha_titulo')
+                                <label><strong>Año del Título</strong></label>
+                                <input wire:model.lazy="form.anio_titulo" class="form-control  @error('form.anio_titulo') is-invalid @enderror" placeholder="2019" readonly />
+                                @error('form.anio_titulo')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Zona Registral:</strong></label>
                                 <select wire:model.lazy="form.zona_registral" class="form-control @error('form.zona_registral') is-invalid @enderror">
@@ -75,7 +75,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Sede Registral:</strong></label>
                                 <select wire:model.lazy="form.sede_registral" class="form-control @error('form.sede_registral') is-invalid @enderror">
@@ -100,11 +100,20 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Placa:</strong></label>
                                 <input wire:model.lazy="form.placa" class="form-control text-uppercase @error('form.placa') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Placa..."/>
                                 @error('form.placa')
+                                <p class="help-text text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="form-group">
+                                <label><strong>Placa anterior:</strong></label>
+                                <input wire:model.lazy="form.placa_anterior" class="form-control text-uppercase @error('form.placa_anterior') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Placa..."/>
+                                @error('form.placa_anterior')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -114,7 +123,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Partida Registral:</strong></label>
-                                <input wire:model.lazy="form.partida_registral" class="form-control  @error('form.partida_registral') is-invalid @enderror" placeholder="Nº de partida registral"/>
+                                <input wire:model.lazy="form.partida_registral" class="form-control  @error('form.partida_registral') is-invalid @enderror" placeholder="Nº de partida registral" readonly/>
                                 @error('form.partida_registral')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -402,6 +411,26 @@
                                 @enderror
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label><strong>Firmas Guardadas:</strong></label>
+                                <select wire:model.lazy="form.firma_guardada" class="form-control @error('form.firma_guardada') is-invalid @enderror">
+                                    @if (count($firmas_guardadas) == 0)
+                                    <option value="" disabled>No hay firmas guardadas</option>
+                                    @else
+                                    <option value="">Seleccione</option>
+                                    @foreach ($firmas_guardadas as $firma)
+                                    <option value="{{ $firma['id'] }}">{{ $firma['nombre_firma'] }}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                                @error('form.firma_guardada')
+                                <p class="help-text text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Firma:</strong></label>
@@ -409,17 +438,12 @@
                                 @error('form.firma')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <div class="form-group">
-                                <label><strong>Fecha y Hora:</strong></label>
-                                <input id="fecha_generado" type="text" wire:model.lazy="form.fecha" class="form-control @error('form.fecha') is-invalid @enderror" placeholder="31/12/1999 12:30:30 pm" readonly />
-                                @error('form.fecha')
-                                <p class="help-text text-danger">{{ $message }}</p>
-                                @enderror
+                                <label for="nombre_firma" class="mt-1">
+                                    <input wire:model="saveFirma" type="checkbox" id="nombre_firma"> ¿Guardar firma como predeterminada?
+                                </label>
+                                @if ($saveFirma)
+                                <input wire:model.lazy="form.nombre_firma" type="text" class="form-control"  placeholder="Indique un nombre">
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -458,7 +482,7 @@
     <script>
         document.addEventListener('livewire:load', function () {
 
-            new AirDatepicker('#fecha_titulo', {
+            /* new AirDatepicker('#fecha_titulo', {
                 onSelect({date, formattedDate, datepicker}) {
                     datepicker.$el.dispatchEvent(new Event('change'));
                 },
@@ -474,7 +498,7 @@
                     timeFormat: 'hh:mm aa',
                     firstDay: 1
                 }
-            });
+            }); */
 
             new AirDatepicker('#anio_fab', {
                 view: 'years',

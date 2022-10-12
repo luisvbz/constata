@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             'pais' => 'REPÚBLICA DEL PERÚ',
             'entidad' => 'SUPERINTENDENCIA NACIONAL DE LOS REGISTROS PÚBLICOS',
             'titulo' => 'TARJETA DE IDENTIFICACIÓN VEHICULAR ELECTRÓNICA',
-            'firma' => null
+            'codigo_verificacion' => '51360181',
+            'partida_registral' => '51261369',
+            'num_titulo' => '1483444',
         ]);
     }
 }

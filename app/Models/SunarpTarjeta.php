@@ -17,10 +17,11 @@ class SunarpTarjeta extends Model
         'codigo_verificacion',
         'num_publicidad',
         'num_titulo',
-        'fecha_titulo',
+        'anio_titulo',
         'zona_registral',
         'sede_registral',
         'placa',
+        'placa_anterior',
         'partida_registral',
         'DUA_DAM',
         'categoria',
@@ -54,6 +55,12 @@ class SunarpTarjeta extends Model
         'condicion',
         'firma',
         'firma_file',
+        'firma_id',
         'fecha',
     ];
+
+    public function firmaGuardada()
+    {
+        return $this->belongsTo(SunarpFirma::class, 'firma_id');
+    }
 }

@@ -25,6 +25,7 @@ Route::get('/panel-administrador/editar-certificado/{placa}', \App\Http\Livewire
 Route::get('/panel-administrador/sunarp', \App\Http\Livewire\Dashboard\Sunarp::class)->middleware('auth')->name('sunarp');
 Route::get('/panel-administrador/sunarp/nuevo', \App\Http\Livewire\Dashboard\SunarpNuevo::class)->middleware('auth')->name('sunarp.nuevo');
 Route::get('/panel-administrador/sunarp/editar/{codigo}', \App\Http\Livewire\Dashboard\SunarpEditar::class)->middleware('auth')->name('sunarp.editar');
+Route::get('/panel-administrador/sunarp/configuracion', \App\Http\Livewire\Dashboard\SunarpConfig::class)->middleware('auth')->name('sunarp.config');
 
 Route::get('/panel-administrador/descargar-formato',[ReportesController::class, 'descargarFormato'])->name('descargar.formato');
 

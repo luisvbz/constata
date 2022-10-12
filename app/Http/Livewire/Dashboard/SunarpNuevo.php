@@ -3,14 +3,19 @@
 namespace App\Http\Livewire\Dashboard;
 
 use Livewire\Component;
+use App\Models\SunarpFirma;
+use App\Models\SunarpTarjeta;
 use Livewire\WithFileUploads;
 use App\Models\SunarpCabecera;
-use App\Models\SunarpTarjeta;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class SunarpNuevo extends Component
 {
     use WithFileUploads;
     
+    public $saveFirma = false;
+    public $firmas_guardadas = [];
     public $form = [
         'pais' => '',
         'entidad' => '',
@@ -18,10 +23,11 @@ class SunarpNuevo extends Component
         'codigo_verificacion' => '',
         'num_publicidad' => '',
         'num_titulo' => '',
-        'fecha_titulo' => '',
+        'anio_titulo' => '',
         'zona_registral' => '',
         'sede_registral' => '',
         'placa' => '',
+        'placa_anterior' => '',
         'partida_registral' => '',
         'DUA_DAM' => '',
         'categoria' => '',
@@ -54,30 +60,33 @@ class SunarpNuevo extends Component
         'carga_util' => '',
         'condicion' => 'SIN DEFINIR',
         'firma' => '',
-        'fecha' => '',
+        'firma_guardada' => '',
+        'nombre_firma' => 'Sin nombre',
     ];
 
     public function mount()
     {
+        $this->firmas_guardadas = SunarpFirma::get()->toArray();
         $cabeceras = SunarpCabecera::first();
-        $this->form['codigo_verificacion'] = create_code(8);
+        $this->form['codigo_verificacion'] = $cabeceras->codigo_verificacion;
         $this->form['pais'] = $cabeceras->pais;
         $this->form['entidad'] = $cabeceras->entidad;
         $this->form['titulo'] = $cabeceras->titulo;
+        $this->form['partida_registral'] = $cabeceras->partida_registral;
+        $this->form['num_titulo'] = $cabeceras->num_titulo;
+        $this->form['anio_titulo'] = now()->format('Y');
     }
 
     protected function rules()
     {
         return [
-            'form.codigo_verificacion' => 'required|numeric',
+            'form.codigo_verificacion' => 'required|numeric|unique:sunarp_tarjetas,codigo_verificacion',
             'form.num_publicidad' => 'nullable',
             'form.num_titulo' => 'required',
-            'form.fecha_titulo' => 'required|date:Y-m-d',
             'form.zona_registral' => 'required',
             'form.sede_registral' => 'required',
             'form.placa' => 'required',
             'form.partida_registral' => 'required|numeric',
-            'form.DUA_DAM' => 'required',
             'form.categoria' => 'nullable',
             'form.marca' => 'required',
             'form.modelo' => 'required',
@@ -107,8 +116,11 @@ class SunarpNuevo extends Component
             'form.peso_neto' => 'required|numeric',
             'form.carga_util' => 'required|numeric',
             'form.condicion' => 'required',
-            'form.firma' => 'required|image|max:1024',
-            'form.fecha' => 'required',
+            'form.firma' => [
+                'image',
+                'max:1024',
+                Rule::requiredIf($this->form['firma_guardada'] == ''),
+            ],
         ];
     }
 
@@ -117,15 +129,13 @@ class SunarpNuevo extends Component
         return [
             'form.codigo_verificacion.required' => 'El código de verificación es requerido.',
             'form.codigo_verificacion.numeric' => 'El valor debe ser numérico.',
+            'form.codigo_verificacion.unique' => 'Ya existe un registro con el mismo código de verificación.',
             'form.num_titulo.required' => 'El Nº del título es requerido.',
-            'form.fecha_titulo.required' => 'La fecha del título es requerida.',
-            'form.fecha_titulo.date' => 'El formato de la fecha es inválido.',
             'form.zona_registral.required' => 'La zona registral es requerida.',
             'form.sede_registral.required' => 'La sede registral es requerida.',
             'form.placa.required' => 'La placa es requerida.',
             'form.partida_registral.required' => 'La partida registral es requerida.',
             'form.partida_registral.numeric' => 'El valor debe ser numérico.',
-            'form.DUA_DAM.required' => 'El DUA/DAM es requerido.',
             'form.marca.required' => 'La marca es requerida.',
             'form.modelo.required' => 'El modelo es requerido.',
             'form.color1.required' => 'El color 1 es requerido.',
@@ -161,7 +171,6 @@ class SunarpNuevo extends Component
             'form.firma.required' => 'La firma es requerida.',
             'form.firma.image' => 'El formato de la imagen no es válido.',
             'form.firma.max' => 'La imagen debe pesar hasta 1MB.',
-            'form.fecha.required' => 'La fecha es requerida.',
         ];
     }
 
@@ -169,11 +178,38 @@ class SunarpNuevo extends Component
     {
         $this->validate();
 
-        // Save signature
-        $path = $this->form['firma']->store('public');
-        // path publico
-        $pathReal = explode("public/", $path)[1];
-        $url = url("/storage/" . $pathReal);
+        DB::beginTransaction();
+
+        $firma = null;
+
+        if (!$this->form['firma_guardada']) {
+            // Save signature
+            $path = $this->form['firma']->store('public');
+            // path publico
+            $pathReal = explode("public/", $path)[1];
+            $url = url("/storage/" . $pathReal);
+        } else {
+            $firmaGuard = SunarpFirma::find($this->form['firma_guardada']);
+            $firma = $firmaGuard;
+            $url = $firmaGuard->firma;
+            $path = $firmaGuard->firma_file;
+        }
+
+        if ((bool)$this->saveFirma && !$this->form['firma_guardada']) {
+            $firmas = SunarpFirma::get();
+            foreach ($firmas as $f) {
+                $f->predeterminada = 0;
+                $f->save();
+            }
+            $firma = SunarpFirma::create([
+                'nombre_firma' => trim($this->form['nombre_firma']) ?: 'Sin nombre',
+                'firma' => $url,
+                'firma_file' => $path,
+                'predeterminada' => 1,
+            ]);
+        }
+
+        $now = now();
 
         SunarpTarjeta::create([
             'pais' => $this->form['pais'],
@@ -182,12 +218,13 @@ class SunarpNuevo extends Component
             'codigo_verificacion' => $this->form['codigo_verificacion'],
             'num_publicidad' => $this->form['num_publicidad'] ?: null,
             'num_titulo' => $this->form['num_titulo'],
-            'fecha_titulo' => date_to_datedb($this->form['fecha_titulo'], '/'),
+            'anio_titulo' => $this->form['anio_titulo'],
             'zona_registral' => $this->form['zona_registral'],
             'sede_registral' => strtoupper($this->form['sede_registral']),
             'placa' => $this->form['placa'],
+            'placa_anterior' => $this->form['placa_anterior'] ?: null,
             'partida_registral' => $this->form['partida_registral'],
-            'DUA_DAM' => $this->form['DUA_DAM'],
+            'DUA_DAM' => $this->form['DUA_DAM'] ?: '000-0000-00-000000-0',
             'categoria' => $this->form['categoria'] ?: null,
             'marca' => $this->form['marca'],
             'modelo' => $this->form['modelo'],
@@ -217,10 +254,22 @@ class SunarpNuevo extends Component
             'peso_neto' => $this->form['peso_neto'],
             'carga_util' => $this->form['carga_util'],
             'condicion' => $this->form['condicion'],
+            'firma_id' => $firma ? $firma->id : null,
             'firma' => $url,
             'firma_file' => $path,
-            'fecha' => $this->form['fecha'],
+            'fecha' => $now,
         ]);
+
+        DB::commit();
+
+        $config = SunarpCabecera::first();
+        $config->codigo_verificacion = $config->codigo_verificacion + 1;
+        $config->partida_registral = $config->partida_registral + 1;
+        $config->num_titulo = $config->num_titulo + 1;
+        $config->save();
+
+        session()->flash('message', 'La información de la tarjeta se ha guardado correctamente.');
+        return redirect()->route('sunarp');
     }
 
     public function render()

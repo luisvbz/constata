@@ -15,11 +15,22 @@ class CreateSunarpTable extends Migration
     {
         Schema::create('sunarp_cabeceras', function (Blueprint $table) {
             $table->id();
-            $table->string('pais');
-            $table->string('entidad');
-            $table->string('titulo');
-            $table->string('firma')->nullable();
+            $table->string('pais')->nullable();
+            $table->string('entidad')->nullable();
+            $table->string('titulo')->nullable();
+            $table->string('codigo_verificacion')->nullable();
+            $table->string('partida_registral')->nullable();
+            $table->string('num_titulo')->nullable();
         });
+
+        Schema::create('sunarp_firmas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre_firma')->nullable();
+            $table->string('firma')->nullable();
+            $table->string('firma_file')->nullable();
+            $table->string('predeterminada')->default(0);
+        });
+
         Schema::create('sunarp_tarjetas', function (Blueprint $table) {
             $table->id();
             $table->string('pais');
@@ -28,12 +39,13 @@ class CreateSunarpTable extends Migration
             $table->integer('codigo_verificacion', false, true);
             $table->string('num_publicidad')->nullable();
             $table->string('num_titulo');
-            $table->date('fecha_titulo');
+            $table->year('anio_titulo');
             $table->string('zona_registral', 5);
             $table->string('sede_registral', 25);
             $table->string('placa');
+            $table->string('placa_anterior')->nullable();
             $table->string('partida_registral', 20);
-            $table->string('DUA_DAM', 30);
+            $table->string('DUA_DAM', 30)->nullable();
             $table->string('categoria', 20)->nullable();
             $table->string('marca', 30);
             $table->string('modelo', 30);
@@ -63,9 +75,10 @@ class CreateSunarpTable extends Migration
             $table->decimal('peso_neto');
             $table->decimal('carga_util');
             $table->string('condicion');
+            $table->string('firma_id')->nullable();
             $table->string('firma');
             $table->string('firma_file');
-            $table->string('fecha');
+            $table->dateTime('fecha')->nullable();
             $table->timestamps();
         });
     }
@@ -78,6 +91,7 @@ class CreateSunarpTable extends Migration
     public function down()
     {
         Schema::dropIfExists('sunarp_cabeceras');
+        Schema::dropIfExists('sunarp_firmas');
         Schema::dropIfExists('sunarp_tarjetas');
     }
 }
