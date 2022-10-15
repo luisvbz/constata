@@ -2,7 +2,7 @@
 $agent = new \Jenssegers\Agent\Agent;
 $scale = 1;
 if ($agent->isMobile()) {
-  $scale = 0.6;
+  $scale = 0.7;
 } else {
   $scale = 1;
 }
