@@ -28,7 +28,7 @@ Route::get('/panel-administrador/sunarp/editar/{codigo}', \App\Http\Livewire\Das
 Route::get('/panel-administrador/sunarp/configuracion', \App\Http\Livewire\Dashboard\SunarpConfig::class)->middleware('auth')->name('sunarp.config');
 
 Route::get('/panel-administrador/descargar-formato',[ReportesController::class, 'descargarFormato'])->name('descargar.formato');
-Route::get('/Sunarp/verTarjetavirtual/{codigo}', \App\Http\Livewire\SunarpVerTarjeta::class);
+Route::get('/Sunarp/verTarjetavirtual/{codigo}', \App\Http\Livewire\SunarpVerTarjeta::class)->name('sunar.ver.tarjeta');
 
 Route::get('/clear-cache', function () {
     Artisan::call('config:clear');
