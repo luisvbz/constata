@@ -61,7 +61,6 @@
                             <th scope="col">Código</th>
                             <th scope="col">Placa</th>
                             <th scope="col">Marca/Modelo</th>
-                            <th scope="col">Sede Registral</th>
                             <th scope="col">Nº Título</th>
                             <th scope="col">Fecha</th>
                             <td></td>
@@ -75,11 +74,10 @@
                                 </td>
                                 <td>{{ $tarjeta->placa }}</td>
                                 <td>{{ $tarjeta->marca }}/{{ $tarjeta->modelo }}</td>
-                                <td class="text-left">{{ $tarjeta->sede_registral }}</td>
                                 <td class="text-left">{{ $tarjeta->num_titulo }}-{{ $tarjeta->anio_titulo }}</td>
                                 <td>{{ $tarjeta->fecha | dateFormat }}</td>
                                 <td>
-                                    <div class="dropdown show">
+                                    <div class="dropdown">
                                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-bars"></i>
                                         </a>
@@ -118,11 +116,11 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label><strong>Placa</strong></label>
-                        <input class="form-control" wire:model.debounce.500ms="placa">
+                        <input class="form-control" wire:model.defer="placa">
                     </div>
                     <div class="form-group">
                         <label><strong>Codigo</strong></label>
-                        <input class="form-control"  wire:model.debounce.500ms="codigo">
+                        <input class="form-control"  wire:model.defer="codigo">
                     </div>
                 </div>
                 <div class="card-footer d-flex">
@@ -133,7 +131,7 @@
         </div>
     </div>
     {{-- Modal de eliminacion--}}
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore>
+    <div x-data="dataModalDelete()" class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore>
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -146,7 +144,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button wire:click="eliminarRegistro" type="button" class="btn btn-danger">Eliminar</button>
+                    <button @click="eliminarRegistro()" type="button" class="btn btn-danger">Eliminar</button>
                 </div>
             </div>
         </div>
@@ -174,9 +172,16 @@
 </div>
 @push('js')
 <script>
-    window.addEventListener('item-deleted', () => {
-        $('#deleteModal').modal('hide');
-    });
+
+    function dataModalDelete() { 
+        return {
+            eliminarRegistro() {
+                @this.eliminarRegistro().then(rs => {
+                    $('#deleteModal').modal('hide');
+                })
+            },
+        }
+    }
 
     function dataItems() {
         return {

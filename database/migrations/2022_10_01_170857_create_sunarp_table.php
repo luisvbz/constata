@@ -36,10 +36,10 @@ class CreateSunarpTable extends Migration
             $table->string('pais');
             $table->string('entidad');
             $table->string('titulo');
-            $table->integer('codigo_verificacion', false, true);
+            $table->string('codigo_verificacion', 20);
             $table->string('num_publicidad')->nullable();
             $table->string('num_titulo');
-            $table->year('anio_titulo');
+            $table->string('anio_titulo', 4);
             $table->string('zona_registral', 5);
             $table->string('sede_registral', 25);
             $table->string('placa');
@@ -60,8 +60,8 @@ class CreateSunarpTable extends Migration
             $table->string('form_rodante', 30)->nullable();
             $table->string('combustible', 30);
             $table->string('version', 30)->nullable();
-            $table->year('anio_fabricacion');
-            $table->year('anio_modelo')->nullable();
+            $table->string('anio_fabricacion', 4);
+            $table->string('anio_modelo', 4)->nullable();
             $table->string('asientos', 2);
             $table->string('pasajeros', 2);
             $table->string('ruedas', 2);
@@ -76,8 +76,8 @@ class CreateSunarpTable extends Migration
             $table->decimal('carga_util');
             $table->string('condicion');
             $table->string('firma_id')->nullable();
-            $table->string('firma');
-            $table->string('firma_file');
+            $table->string('firma')->nullable();
+            $table->string('firma_file')->nullable();
             $table->dateTime('fecha')->nullable();
             $table->timestamps();
         });

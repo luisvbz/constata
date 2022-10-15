@@ -8,7 +8,7 @@
             margin-left: 60pt;
             margin-right: 60pt;
             size: auto;
-            background-image: url({{base_path("/resources/images/fd.png")}}) no-repeat 0 0;
+            background-image: url({{base_path("/resources/images/fd.jpeg")}}) no-repeat 0 0;
             background-image-resize: 6;
             background-size: contain;
         }
@@ -283,7 +283,9 @@
                 <img src="{{ $img->encoded }}" alt="QrCode" width="420" height="80">
             </td>
             <td align="center">
+                @if ($firma)
                 <img src="{{ $firma }}" alt="Firma" width="190">
+                @endif
             </td>
         </tr>
     </table>
