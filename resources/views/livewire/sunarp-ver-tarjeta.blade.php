@@ -8,7 +8,7 @@
   PdfViewer = PDFViewer({
     container: $refs.viewer,
     canvas: null,
-    scale: 1.4
+    scale: 1
   })
   PdfViewer.loadSource(url);
   PdfViewer.init();
