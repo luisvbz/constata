@@ -167,6 +167,6 @@ const PDFViewer = (userOptions) => {
   );
 };
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = "/js/livewire/components/pdf.worker.min.js";
+pdfjsLib.GlobalWorkerOptions.workerSrc = "/js/livewire/components/pdf.worker.js";
 
 window.PDFViewer = PDFViewer;

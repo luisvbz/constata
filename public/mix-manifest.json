@@ -2,5 +2,5 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/livewire/components/pdf-viewer.js": "/js/livewire/components/pdf-viewer.js",
-    "/js/livewire/components/pdf.worker.min.js": "/js/livewire/components/pdf.worker.min.js"
+    "/js/livewire/components/pdf.worker.js": "/js/livewire/components/pdf.worker.js"
 }

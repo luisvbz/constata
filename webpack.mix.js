@@ -14,7 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .js("resources/js/livewire/pdf-viewer.js", "public/js/livewire/components")
     .copyDirectory(
-        "resources/js/livewire/pdf.worker.min.js",
+        "resources/js/livewire/pdf.worker.js",
         "public/js/livewire/components"
     )
     .postCss('resources/css/app.css', 'public/css', [
