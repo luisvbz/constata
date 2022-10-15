@@ -24,7 +24,7 @@
                 <img src="/logo.png" style=" height: 50px;"/>
             </div>
             <div class="right">
-                <h5>TARJETA DE IDENTIFICACIÓN VEHICULAR ELECTRONICA</h5>
+                
             </div>
         </div>
         <div class="container-fluid general-container">
