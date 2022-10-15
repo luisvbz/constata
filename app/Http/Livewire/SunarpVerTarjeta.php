@@ -42,7 +42,7 @@ class SunarpVerTarjeta extends Component
     {
         $item = SunarpTarjeta::where('codigo_verificacion', $this->codigo)->first();
         $pdf = PDF::loadView('pdfs.sunarp', $item);
-        $pdf->save(storage_path('/app/public/pdfs/'.$item['codigo_verificacion'].'.pdf'));
+        $pdf->save(storage_path('app/public/pdfs/'.$item['codigo_verificacion'].'.pdf'));
         $this->url = url('/storage/pdfs/'.$item['codigo_verificacion'].'.pdf');
 
         return view('livewire.sunarp-ver-tarjeta', [
