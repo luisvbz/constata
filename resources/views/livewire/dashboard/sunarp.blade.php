@@ -86,6 +86,7 @@
                                             <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDetalle({{ $tarjeta }})"><i class="fas fa-search"></i> Ver tarjeta</a>
                                             <a class="dropdown-item" href="{{ route('sunarp.editar', [$tarjeta->codigo_verificacion]) }}"><i class="fas fa-edit"></i> Editar registro</a>
                                             <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDelete({{ $tarjeta }})"><i class="fas fa-trash"></i> Eliminar registro</a>
+                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="copySunarpTarjeta($event, {{ $tarjeta }}, '{{ route('sunar.ver.tarjeta', ['codigo' => $tarjeta->codigo_verificacion]) }}')"><i class="fas fa-copy"></i> Copiar enlace de tarjeta</a>
                                         </div>
                                     </div>
                                 </td>
@@ -200,6 +201,19 @@
                     $('#pdf-iframe').attr('src', rs);
                     $('#modalDetalle').modal('show');
                 })
+            },
+            copySunarpTarjeta(event, item, link) {
+                if (!navigator.clipboard) {
+                    let input = document.createElement('textarea');
+                    input.value = link;
+                    document.body.appendChild(input);
+                    input.select();
+                    document.execCommand('copy')
+                    document.body.removeChild(input);
+                } else {
+
+                }
+
             }
         }
     }
