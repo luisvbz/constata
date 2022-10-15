@@ -21,11 +21,13 @@
             <div x-ref="viewer" class="mx-auto"></div>
         </div>
     </section>
-    <div id="pageCount"></div>
-    <div id="pageNum"></div>
-    <div id="prev"></div>
-    <div id="next"></div>
-    <div id="upZoom"></div>
-    <div id="downZoom"></div>
+    <div class="d-none">
+      <div id="pageCount"></div>
+      <div id="pageNum"></div>
+      <div id="prev"></div>
+      <div id="next"></div>
+      <div id="upZoom"></div>
+      <div id="downZoom"></div>
+    </div>
   </div>
 </div>
