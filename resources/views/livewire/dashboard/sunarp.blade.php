@@ -203,17 +203,12 @@
                 })
             },
             copySunarpTarjeta(event, item, link) {
-                if (!navigator.clipboard) {
-                    let input = document.createElement('textarea');
-                    input.value = link;
-                    document.body.appendChild(input);
-                    input.select();
-                    document.execCommand('copy')
-                    document.body.removeChild(input);
-                } else {
-
-                }
-
+                let input = document.createElement('textarea');
+                input.value = link;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy')
+                document.body.removeChild(input);
             }
         }
     }
