@@ -1,3 +1,12 @@
+@php
+$agent = new \Jenssegers\Agent\Agent;
+$scale = 1;
+if ($agent->isMobile()) {
+  $scale = 0.6;
+} else {
+  $scale = 1;
+}
+@endphp
 <div
   x-data="{ 
   open: true,
@@ -8,7 +17,7 @@
   PdfViewer = PDFViewer({
     container: $refs.viewer,
     canvas: null,
-    scale: 1
+    scale: {{ $scale }}
   })
   PdfViewer.loadSource(url);
   PdfViewer.init();
