@@ -34,7 +34,7 @@
     <table class="table" cellpadding="0" cellspacing="0">
         <tr>
             <td width="23%">
-                <img src="data:image/png;base64,{!! base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->margin(3)->size(160)->generate(url('/'))) !!}" width="135" alt="QrCode">
+                <img src="data:image/png;base64,{!! base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->margin(3)->size(160)->generate(url($url))) !!}" width="135" alt="QrCode">
             </td>
             <td valign="middle" style="color:#222;line-height:1.5;">
                <div>&nbsp;</div> 
