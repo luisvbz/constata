@@ -41,6 +41,7 @@ class SunarpVerTarjeta extends Component
     public function render()
     {
         $item = SunarpTarjeta::where('codigo_verificacion', $this->codigo)->first();
+        $item['url'] = url('/storage/pdfs/'.$item['codigo_verificacion'].'.pdf');
         $pdf = PDF::loadView('pdfs.sunarp', $item);
         $pdf->save(storage_path('app/public/pdfs/'.$item['codigo_verificacion'].'.pdf'));
         $this->url = url('/storage/pdfs/'.$item['codigo_verificacion'].'.pdf');
