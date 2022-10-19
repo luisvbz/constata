@@ -101,13 +101,67 @@ class SunarpNuevo extends Component
             'form.form_rodante' => 'nullable',
             'form.combustible' => 'required',
             'form.version' => 'nullable',
-            'form.anio_fabricacion' => 'required|max:4',
-            'form.anio_modelo' => 'nullable|max:4',
-            'form.asientos' => 'required|numeric|max:2',
-            'form.pasajeros' => 'required|numeric|max:2',
-            'form.ruedas' => 'required|numeric|max:2',
-            'form.ejes' => 'required|numeric|max:2',
-            'form.cilindros' => 'required|numeric|max:2',
+            'form.anio_fabricacion' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 4) {
+                        $fail('Máx. hasta 4 digitos.');
+                    }
+                },
+            ],
+            'form.anio_modelo' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 4) {
+                        $fail('Máx. hasta 4 digitos.');
+                    }
+                },
+            ],
+            'form.asientos' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 2) {
+                        $fail('Máx. hasta 2 digitos.');
+                    }
+                },
+            ],
+            'form.pasajeros' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 2) {
+                        $fail('Máx. hasta 2 digitos.');
+                    }
+                },
+            ],
+            'form.ruedas' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 2) {
+                        $fail('Máx. hasta 2 digitos.');
+                    }
+                },
+            ],
+            'form.ejes' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 2) {
+                        $fail('Máx. hasta 2 digitos.');
+                    }
+                },
+            ],
+            'form.cilindros' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 2) {
+                        $fail('Máx. hasta 2 digitos.');
+                    }
+                },
+            ],
             'form.longitud' => 'required|numeric',
             'form.altura' => 'required|numeric',
             'form.ancho' => 'required|numeric',
@@ -144,22 +198,16 @@ class SunarpNuevo extends Component
             'form.carroceria.required' => 'La carroceria es requerida.',
             'form.combustible.required' => 'El combustible es requerido.',
             'form.anio_fabricacion.required' => 'El año de fabricación es requerido.',
-            'form.anio_fabricacion.max' => 'Máx. hasta :max digitos.',
             'form.asientos.required' => 'El Nº de asientos es requerido.',
             'form.asientos.numeric' => 'El valor debe ser numérico.',
-            'form.asientos.max' => 'Máx. hasta :max digitos.',
             'form.pasajeros.required' => 'El Nº de pasajeros es requerido.',
             'form.pasajeros.numeric' => 'El valor debe ser numérico.',
-            'form.pasajeros.max' => 'Máx. hasta :max digitos.',
             'form.ruedas.required' => 'El Nº de ruedas es requerida.',
             'form.ruedas.numeric' => 'El valor debe ser numérico.',
-            'form.ruedas.max' => 'Máx. hasta :max digitos.',
             'form.ejes.required' => 'El Nº de ejes es requerido.',
             'form.ejes.numeric' => 'El valor debe ser numérico.',
-            'form.ejes.max' => 'Máx. hasta :max digitos.',
             'form.cilindros.required' => 'El Nº de cilindros es requerido.',
             'form.cilindros.numeric' => 'El valor debe ser numérico.',
-            'form.cilindros.max' => 'Máx. hasta :max digitos.',
             'form.longitud.required' => 'La longitud es requerida.',
             'form.longitud.numeric' => 'El valor debe ser numérico.',
             'form.altura.required' => 'La altura es requerida.',
