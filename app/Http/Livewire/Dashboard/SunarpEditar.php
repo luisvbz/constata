@@ -149,13 +149,67 @@ class SunarpEditar extends Component
             'form.form_rodante' => 'nullable',
             'form.combustible' => 'required',
             'form.version' => 'nullable',
-            'form.anio_fabricacion' => 'required|max_digits:4',
-            'form.anio_modelo' => 'nullable|max_digits:4',
-            'form.asientos' => 'required|numeric|max_digits:2',
-            'form.pasajeros' => 'required|numeric|max_digits:2',
-            'form.ruedas' => 'required|numeric|max_digits:2',
-            'form.ejes' => 'required|numeric|max_digits:2',
-            'form.cilindros' => 'required|numeric|max_digits:2',
+            'form.anio_fabricacion' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 4) {
+                        $fail('Máx. hasta 4 digitos.');
+                    }
+                },
+            ],
+            'form.anio_modelo' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 4) {
+                        $fail('Máx. hasta 4 digitos.');
+                    }
+                },
+            ],
+            'form.asientos' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 2) {
+                        $fail('Máx. hasta 2 digitos.');
+                    }
+                },
+            ],
+            'form.pasajeros' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 2) {
+                        $fail('Máx. hasta 2 digitos.');
+                    }
+                },
+            ],
+            'form.ruedas' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 2) {
+                        $fail('Máx. hasta 2 digitos.');
+                    }
+                },
+            ],
+            'form.ejes' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 2) {
+                        $fail('Máx. hasta 2 digitos.');
+                    }
+                },
+            ],
+            'form.cilindros' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 2) {
+                        $fail('Máx. hasta 2 digitos.');
+                    }
+                },
+            ],
             'form.longitud' => 'required|numeric',
             'form.altura' => 'required|numeric',
             'form.ancho' => 'required|numeric',
