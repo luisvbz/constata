@@ -41,6 +41,7 @@ class Sunarp extends Component
 
     public function getSunarpPdf($item)
     {
+        $item['url'] = url('/storage/pdfs/'.$item['codigo_verificacion'].'.pdf');
         $pdf = PDF::loadView('pdfs.sunarp', $item);
         $pdf->save(storage_path('/app/public/pdfs/'.$item['codigo_verificacion'].'.pdf'));
         return url('/storage/pdfs/'.$item['codigo_verificacion'].'.pdf');
