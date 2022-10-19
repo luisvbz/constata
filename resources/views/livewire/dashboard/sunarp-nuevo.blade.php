@@ -197,8 +197,8 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
-                                <label><strong>Nº de VIM:</strong></label>
-                                <input type="text" wire:model.lazy="form.VIM" class="form-control text-uppercase @error('form.VIM') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Nº de VIM" />
+                                <label><strong>Nº de VIN:</strong></label>
+                                <input type="text" wire:model.lazy="form.VIM" class="form-control text-uppercase @error('form.VIM') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Nº de VIN" />
                                 @error('form.VIM')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
