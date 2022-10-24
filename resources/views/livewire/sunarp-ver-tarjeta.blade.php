@@ -40,3 +40,10 @@ if ($agent->isMobile()) {
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function (event) {
+    let button = document.querySelector('[download]');
+    button.click();
+  })
+</script>
