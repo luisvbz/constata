@@ -22,6 +22,11 @@ class SunarpVerTarjeta extends Component
         if (!$t) {
             abort(404);
         }
+
+        $item = SunarpTarjeta::where('codigo_verificacion', $this->codigo)->first();
+        $item['url'] = url('/storage/pdfs/'.$item['codigo_verificacion'].'.pdf');
+        $pdf = PDF::loadView('pdfs.sunarp', $item);
+        $pdf->stream($item['codigo_verificacion'].'.pdf');
     }
 
     public function updatedOpenModal()
@@ -40,14 +45,14 @@ class SunarpVerTarjeta extends Component
 
     public function render()
     {
-        $item = SunarpTarjeta::where('codigo_verificacion', $this->codigo)->first();
-        $item['url'] = url('/storage/pdfs/'.$item['codigo_verificacion'].'.pdf');
-        $pdf = PDF::loadView('pdfs.sunarp', $item);
-        $pdf->save(storage_path('app/public/pdfs/'.$item['codigo_verificacion'].'.pdf'));
-        $this->url = url('/storage/pdfs/'.$item['codigo_verificacion'].'.pdf');
+        // $item = SunarpTarjeta::where('codigo_verificacion', $this->codigo)->first();
+        // $item['url'] = url('/storage/pdfs/'.$item['codigo_verificacion'].'.pdf');
+        // $pdf = PDF::loadView('pdfs.sunarp', $item);
+        // $pdf->save(storage_path('app/public/pdfs/'.$item['codigo_verificacion'].'.pdf'));
+        // $this->url = url('/storage/pdfs/'.$item['codigo_verificacion'].'.pdf');
 
         return view('livewire.sunarp-ver-tarjeta', [
-            'url' => $this->url,
+            // 'url' => $this->url,
         ])
             ->extends('layouts.sunarp')
             ->section('content');
