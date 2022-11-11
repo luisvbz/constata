@@ -52,6 +52,11 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Sunarp</span></a>
         </li>
+        <li class="nav-item @if(\Route::currentRouteName() == 'dnis') active @endif">
+            <a class="nav-link" href="{{ route('dnis') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Generar DNI</span></a>
+        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
