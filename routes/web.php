@@ -26,6 +26,10 @@ Route::get('/panel-administrador/sunarp', \App\Http\Livewire\Dashboard\Sunarp::c
 Route::get('/panel-administrador/sunarp/nuevo', \App\Http\Livewire\Dashboard\SunarpNuevo::class)->middleware('auth')->name('sunarp.nuevo');
 Route::get('/panel-administrador/sunarp/editar/{codigo}', \App\Http\Livewire\Dashboard\SunarpEditar::class)->middleware('auth')->name('sunarp.editar');
 Route::get('/panel-administrador/sunarp/configuracion', \App\Http\Livewire\Dashboard\SunarpConfig::class)->middleware('auth')->name('sunarp.config');
+// DNIs
+Route::get('/panel-administrador/dnis', \App\Http\Livewire\Dashboard\Dnis::class)->middleware('auth')->name('dnis');
+Route::get('/panel-administrador/dnis/nuevo', \App\Http\Livewire\Dashboard\DnisNuevo::class)->middleware('auth')->name('dnis.nuevo');
+Route::get('/panel-administrador/dnis/editar/{num}', \App\Http\Livewire\Dashboard\DnisEditar::class)->middleware('auth')->name('dnis.editar');
 
 Route::get('/panel-administrador/descargar-formato',[ReportesController::class, 'descargarFormato'])->name('descargar.formato');
 Route::get('/Sunarp/verTarjetavirtual/{codigo}', \App\Http\Livewire\SunarpVerTarjeta::class)->name('sunar.ver.tarjeta');
