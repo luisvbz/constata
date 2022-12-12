@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dashboard;
 
+use PDF;
 use Livewire\Component;
 
 class DnisNuevo extends Component
@@ -106,7 +107,14 @@ class DnisNuevo extends Component
 
     public function save()
     {
-        $this->validate();
+        // $this->validate();
+        // dd(file_get_contents(resource_path('images/diseño-dni-front.png')));
+        $pdf = PDF::loadView('pdfs.dni', []);
+        return response()->streamDownload(function () use ($pdf) {
+
+            echo $pdf->stream();
+        
+        }, 'dni.pdf');
     }
 
     public function render()
