@@ -1,6 +1,5 @@
 <?php
 
-use PDF;
 use App\Http\Controllers\ReportesController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -40,11 +39,6 @@ Route::get('/clear-cache', function () {
     Artisan::call('config:cache');
     Artisan::call('cache:clear');
     Artisan::call('route:clear');
-});
-
-Route::get('/dni', function () {
-    $pdf = PDF::loadView('pdfs.dni', []);
-    return $pdf->stream();
 });
 
 Route::get('/storage-link', function () {

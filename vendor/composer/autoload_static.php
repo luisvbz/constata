@@ -126,6 +126,7 @@ class ComposerStaticInit10b9854049255be95cf65d44c959d097
         ),
         'T' => 
         array (
+            'Treinetic\\ImageArtist\\' => 22,
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
             'Tests\\' => 6,
         ),
@@ -300,6 +301,10 @@ class ComposerStaticInit10b9854049255be95cf65d44c959d097
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Treinetic\\ImageArtist\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/treinetic/imageartist/src',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -713,6 +718,7 @@ class ComposerStaticInit10b9854049255be95cf65d44c959d097
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Certificado' => __DIR__ . '/../..' . '/app/Models/Certificado.php',
+        'App\\Models\\Dni' => __DIR__ . '/../..' . '/app/Models/Dni.php',
         'App\\Models\\SunarpCabecera' => __DIR__ . '/../..' . '/app/Models/SunarpCabecera.php',
         'App\\Models\\SunarpFirma' => __DIR__ . '/../..' . '/app/Models/SunarpFirma.php',
         'App\\Models\\SunarpTarjeta' => __DIR__ . '/../..' . '/app/Models/SunarpTarjeta.php',
@@ -6036,6 +6042,28 @@ class ComposerStaticInit10b9854049255be95cf65d44c959d097
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'Treinetic\\ImageArtist\\lib\\AssetManager\\Asset' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/AssetManager/Asset.php',
+        'Treinetic\\ImageArtist\\lib\\Commons\\Node' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Commons/Node.php',
+        'Treinetic\\ImageArtist\\lib\\Commons\\Rectangle' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Commons/Rectangle.php',
+        'Treinetic\\ImageArtist\\lib\\Helpers\\GDUtils' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Helpers/GDUtils.php',
+        'Treinetic\\ImageArtist\\lib\\Helpers\\ImageHelper' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Helpers/ImageHelper.php',
+        'Treinetic\\ImageArtist\\lib\\Image' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Image.php',
+        'Treinetic\\ImageArtist\\lib\\Others\\OrientationFixer' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Others/OrientationFixer.php',
+        'Treinetic\\ImageArtist\\lib\\Overlays\\Overlay' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Overlays/Overlay.php',
+        'Treinetic\\ImageArtist\\lib\\Shapes\\CircularShape' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Shapes/CircularShape.php',
+        'Treinetic\\ImageArtist\\lib\\Shapes\\PolygonShape' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Shapes/PolygonShape.php',
+        'Treinetic\\ImageArtist\\lib\\Shapes\\Shapable' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Shapes/Shapable.php',
+        'Treinetic\\ImageArtist\\lib\\Shapes\\Shape' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Shapes/Shape.php',
+        'Treinetic\\ImageArtist\\lib\\Shapes\\Square' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Shapes/Square.php',
+        'Treinetic\\ImageArtist\\lib\\Shapes\\Triangle' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Shapes/Triangle.php',
+        'Treinetic\\ImageArtist\\lib\\Text\\Color' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Text/Color.php',
+        'Treinetic\\ImageArtist\\lib\\Text\\Font' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Text/Font.php',
+        'Treinetic\\ImageArtist\\lib\\Text\\TextBox' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Text/TextBox.php',
+        'Treinetic\\ImageArtist\\lib\\Text\\TextWriter' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Text/TextWriter.php',
+        'Treinetic\\ImageArtist\\lib\\Text\\Write\\GDWritingStrategy' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Text/Write/GDWritingStrategy.php',
+        'Treinetic\\ImageArtist\\lib\\Text\\Write\\ImagickWritingStrategy' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Text/Write/ImagickWritingStrategy.php',
+        'Treinetic\\ImageArtist\\lib\\Text\\Write\\WriteFactory' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Text/Write/WriteFactory.php',
+        'Treinetic\\ImageArtist\\lib\\Text\\Write\\WritingStrategy' => __DIR__ . '/..' . '/treinetic/imageartist/src/lib/Text/Write/WritingStrategy.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',

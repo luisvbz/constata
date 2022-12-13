@@ -9,51 +9,54 @@
     </style>
 </head>
 <body>
-    <img src="{{ resource_path('images/diseño-dni-front.png') }}" width="321.260px" alt="front">
-    <div style="color:#912330;width:200px;position:fixed;top:6.5;left:248;font-size:7.5pt;font-weight:bold;">70035765</div>
-    <div style="width:20px;position:fixed;top:6.5;left:302;font-size:7.5pt;font-weight:bold;">- 7</div>
+    <img style="position:fixed;top:100;left:50;" src="{{ resource_path('images/diseño-dni-front-merged.png') }}" width="321.260px" alt="front">
+    <div style="color:#912330;width:200px;position:fixed;top:6.5;left:248;font-size:7.5pt;font-weight:bold;">{{ $numero_documento }}</div>
+    <div style="width:20px;position:fixed;top:6.5;left:302;font-size:7.5pt;font-weight:bold;">- {{ $numero_verificacion }}</div>
     <!-- Datos -->
-    <div style="position:fixed;top:19;left:85;font-size:6pt;">Primer Apellido</div>
-    <div style="position:fixed;top:27;left:85;font-weight:bold;font-size:6pt;">CUADROS</div>
-    <div style="position:fixed;top:40;left:85;font-size:6pt;">Segundo Apellido</div>
-    <div style="position:fixed;top:48;left:85;font-weight:bold;font-size:6pt;">GONZALES</div>
-    <div style="position:fixed;top:60;left:85;font-size:6pt;">Pre Nombres</div>
-    <div style="position:fixed;top:68;left:85;font-weight:bold;font-size:6pt;">MIGUEL ANTONIO</div>
-    <div style="position:fixed;top:80;left:85;font-size:6pt;">Nacimiento: Fecha y Ubigeo</div>
-    <div style="position:fixed;top:89;left:85;font-weight:bold;font-size:6pt;">08 10 1994</div>
-    <div style="position:fixed;top:89;left:140;font-weight:bold;font-size:6pt;text-align: center;">240104</div>
-    <div style="position:fixed;top:102;left:85;font-size:6pt;">Sexo</div>
-    <div style="position:fixed;top:102;left:130;font-size:6pt;">Estado Civil</div>
-    <div style="position:fixed;top:112;left:85;font-weight:bold;font-size:6pt;">M</div>
-    <div style="position:fixed;top:112;left:130;font-weight:bold;font-size:6pt;text-align: center;">S</div>
-    <div style="width:75px;position:fixed;top:115;left:10;color:#912330;text-align:center;font-size:6pt;letter-spacing:0.1;">CUADROS</div>
-    <div style="width:100px;position:fixed;rotate:90;top:21;left:3;color:#912330;letter-spacing:5;font-weight:bold;font-size:8.5pt;">70035765</div>
+    <div style="position:fixed;top:19;left:85;font-size:5.6pt;">Primer Apellido</div>
+    <div style="position:fixed;top:27;left:85;font-weight:bold;font-size:5.6pt;">{{ $primer_apellido }}</div>
+    <div style="position:fixed;top:40;left:85;font-size:5.6pt;">Segundo Apellido</div>
+    <div style="position:fixed;top:48;left:85;font-weight:bold;font-size:5.6pt;">{{ $segundo_apellido }}</div>
+    <div style="position:fixed;top:60;left:85;font-size:5.6pt;">Pre Nombres</div>
+    <div style="position:fixed;top:68;left:85;font-weight:bold;font-size:5.6pt;">{{ $pre_nombres }}</div>
+    <div style="position:fixed;top:80;left:85;font-size:5.6pt;">Nacimiento: Fecha y Ubigeo</div>
+    <div style="position:fixed;top:89;left:85;font-weight:bold;font-size:5.6pt;">{{ date('d m Y', strtotime($fecha_nacimiento)) }}</div>
+    <div style="position:fixed;top:89;left:140;font-weight:bold;font-size:5.6pt;text-align: center;">{{ $ubigeo }}</div>
+    <div style="position:fixed;top:102;left:85;font-size:5.6pt;">Sexo</div>
+    <div style="position:fixed;top:102;left:130;font-size:5.6pt;">Estado Civil</div>
+    <div style="position:fixed;top:112;left:85;font-weight:bold;font-size:5.6pt;">{{ $sexo }}</div>
+    <div style="position:fixed;top:112;left:130;font-weight:bold;font-size:5.6pt;text-align: center;">{{ $estado_civil }}</div>
+    <div style="width:75px;position:fixed;top:115;left:10;color:#912330;text-align:center;font-size:5.6pt;letter-spacing:0.1;">{{ $primer_apellido }}</div>
+    <div style="width:100px;position:fixed;rotate:90;top:21;left:3;color:#912330;letter-spacing:5;font-weight:bold;font-size:8.5pt;">{{ $numero_documento }}</div>
 
-    <div style="width:150;position:fixed;top:21;left:240;">
-        <table style="font-size:6pt;border-collapse:collapse;" cellspacing="0" cellpadding:0;>
+    <div style="width:150;position:fixed;top:21;left:248;">
+        <table style="font-size:5pt;border-collapse:collapse;" cellspacing="0" cellpadding:0;>
             <tr>
-                <td align="center" style="border:1px solid #0f0f0f;padding:3px 5px;">
+                <td align="center" style="border:1px solid #0f0f0f;padding:3px 7px;">
                     <div>Fecha Inscripción</div>
-                    <div style="font-weight:bold;">20 05 2004</div>
+                    <div style="font-weight:bold;">{{ date('d m Y', strtotime($fecha_incripcion)) }}</div>
                 </td>
             </tr>
             <tr>
-                <td align="center" style="border:1px solid #0f0f0f;padding:3px 5px;">
+                <td align="center" style="border:1px solid #0f0f0f;padding:3px 7px;">
                     <div>Fecha Emisión</div>
-                    <div style="font-weight:bold;">20 05 2004</div>
+                    <div style="font-weight:bold;">{{ date('d m Y', strtotime($fecha_emision)) }}</div>
                 </td>
             </tr>
             <tr>
-                <td align="center" style="border:1px solid #0f0f0f;padding:3px 5px;">
+                <td align="center" style="border:1px solid #0f0f0f;padding:3px 7px;">
                     <div>Fecha Caducidad</div>
-                    <div style="font-weight:bold;color:#912330;">20 05 2004</div>
+                    <div style="font-weight:bold;color:#912330;">{{ date('d m Y', strtotime($fecha_caducidad)) }}</div>
                 </td>
             </tr>
         </table>
     </div>
 
     <div style="width:305px;position:fixed;top:126;left:10;font-size:10pt;font-family:monospace;font-weight:bold;letter-spacing:2.1;line-height:1.2;">
-        <p>{{ 'I<PER70035765<9<<<<<<<<<<<<<<<9410084M3004054PER<<<<<<<<<<<4CUADROS<<MIGUEL<ANTONIO<<<<<<<' }}</p>
+        @php
+        $preNom = implode('<', explode(' ', $pre_nombres));
+        @endphp
+        <p>{{ 'I<PER'.$numero_documento.'<'. random_int(1, 9) .'<<<<<<<<<<<<<<<'. create_code(7) .'M'. create_code(7) .'PER<<<<<<<<<<<'. random_int(1, 9) .$primer_apellido.'<<'.$preNom.'<<<<<<<' }}</p>
     </div>
 
     <pagebreak type="NEXT-EVEN" />
@@ -91,19 +94,19 @@
             </tr>
         </table>
     </div>
-    <div style="position:fixed;top:73;left:10;font-size:6pt;">Departamento</div>
-    <div style="position:fixed;top:81;left:10;font-weight:bold;font-size:6pt;">LIMA</div>
-    <div style="position:fixed;top:73;left:90;font-size:6pt;">Provincia</div>
-    <div style="position:fixed;top:81;left:90;font-weight:bold;font-size:6pt;">LIMA</div>
-    <div style="position:fixed;top:73;left:170;font-size:6pt;">Distrito</div>
-    <div style="position:fixed;top:81;left:170;font-weight:bold;font-size:6pt;">SAN MARTIN DE PORRES</div>
-    <div style="position:fixed;top:95;left:10;font-size:6pt;">Dirección</div>
-    <div style="position:fixed;top:103;left:10;font-weight:bold;font-size:6pt;">MZ A LT 20 URB LOS DOMINIOS</div>
-    <div style="position:fixed;top:115;left:10;font-size:6pt;">Observaciones</div>
-    <div style="position:fixed;top:122;left:10;font-size:6pt;">Donación de Organos</div>
-    <div style="width:100px;position:fixed;top:122;left:90;font-weight:bold;font-size:6pt;">SI</div>
-    <div style="position:fixed;top:122;left:126;font-size:6pt;">Grupo de Votación</div>
-    <div style="width:100px;position:fixed;top:122;left:195;font-weight:bold;font-size:6pt;">260101</div>
+    <div style="position:fixed;top:73;left:10;font-size:5.6pt;">Departamento</div>
+    <div style="position:fixed;top:81;left:10;font-weight:bold;font-size:5.6pt;">{{ $departamento }}</div>
+    <div style="position:fixed;top:73;left:90;font-size:5.6pt;">Provincia</div>
+    <div style="position:fixed;top:81;left:90;font-weight:bold;font-size:5.6pt;">{{ $provincia }}</div>
+    <div style="position:fixed;top:73;left:170;font-size:5.6pt;">Distrito</div>
+    <div style="position:fixed;top:81;left:170;font-weight:bold;font-size:5.6pt;">{{ $distrito }}</div>
+    <div style="position:fixed;top:95;left:10;font-size:5.6pt;">Dirección</div>
+    <div style="position:fixed;top:103;left:10;font-weight:bold;font-size:5.6pt;">{{ $direccion }}</div>
+    <div style="position:fixed;top:118;left:10;font-size:5.6pt;">Observaciones</div>
+    <div style="position:fixed;top:125;left:10;font-size:5.6pt;">Donación de Organos</div>
+    <div style="width:100px;position:fixed;top:125;left:90;font-weight:bold;font-size:5.6pt;">{{ $donante }}</div>
+    <div style="position:fixed;top:125;left:126;font-size:5.6pt;">Grupo de Votación</div>
+    <div style="width:100px;position:fixed;top:125;left:195;font-weight:bold;font-size:5.6pt;">{{ $grupo_votacion }}</div>
  
 </body>
 </html>

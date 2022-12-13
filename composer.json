@@ -22,7 +22,8 @@
         "phpoffice/phpspreadsheet": "^1.15",
         "picqer/php-barcode-generator": "^2.2",
         "simplesoftwareio/simple-qrcode": "^4.2",
-        "thepinecode/blade-filters": "^0.7.0"
+        "thepinecode/blade-filters": "^0.7.0",
+        "treinetic/imageartist": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -54,7 +54,8 @@
                         <tr>
                             <th scope="col">Nº de Documento</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Fecha</th>
+                            <th scope="col">Fecha Emisión</th>
+                            <th scope="col">Fecha Registro</th>
                             <td></td>
                         </tr>
                         </thead>
@@ -62,12 +63,11 @@
                         @forelse ($dnis as $key => $dni)
                             <tr>
                                 <td class="text-left">
-                                    {{ $dni->codigo_verificacion }}
+                                    {{ $dni->numero_documento }}
                                 </td>
-                                <td>{{ $dni->placa }}</td>
-                                <td>{{ $dni->marca }}/{{ $dni->modelo }}</td>
-                                <td class="text-left">{{ $dni->num_titulo }}-{{ $dni->anio_titulo }}</td>
-                                <td>{{ $dni->fecha | dateFormat }}</td>
+                                <td>{{ $dni->primer_apellido }} {{ $dni->pre_nombres }}</td>
+                                <td>{{ $dni->fecha_incripcion | dateFormat }}</td>
+                                <td>{{ $dni->fecha_creacion | dateFormat }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,10 +75,9 @@
                                         </a>
 
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDetalle({{ $dni }})"><i class="fas fa-search"></i> Ver tarjeta</a>
-                                            <a class="dropdown-item" href="{{ route('sunarp.editar', [$dni->codigo_verificacion]) }}"><i class="fas fa-edit"></i> Editar registro</a>
+                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDetalle({{ $dni }})"><i class="fas fa-search"></i> Ver DNI</a>
+                                            <a class="dropdown-item" href="{{ route('dnis.editar', [$dni->numero_documento]) }}"><i class="fas fa-edit"></i> Editar registro</a>
                                             <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDelete({{ $dni }})"><i class="fas fa-trash"></i> Eliminar registro</a>
-                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="copySunarpTarjeta($event, {{ $dni }}, '{{ route('sunar.ver.tarjeta', ['codigo' => $dni->codigo_verificacion]) }}')"><i class="fas fa-copy"></i> Copiar enlace de tarjeta</a>
                                         </div>
                                     </div>
                                 </td>
@@ -185,7 +184,7 @@
             showModalDetalle (item) {
                 @this.getDni(item).then(rs => {
                     $('#link-download').attr('href', rs);
-                    $('#link-download').attr('download', item.codigo_verificacion);
+                    $('#link-download').attr('download', item.numero_documento);
                     $('#pdf-iframe').attr('src', rs);
                     $('#modalDetalle').modal('show');
                 })

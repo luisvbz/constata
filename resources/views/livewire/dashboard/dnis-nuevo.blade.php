@@ -33,7 +33,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Primer Apellido</strong></label>
-                                <input type="text" wire:model.lazy="form.primer_apellido" class="form-control  @error('form.primer_apellido') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Primer Apellido" />
+                                <input type="text" wire:model.lazy="form.primer_apellido" class="form-control text-uppercase @error('form.primer_apellido') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Primer Apellido" />
                                 @error('form.primer_apellido')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -42,7 +42,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Segundo Apellido</strong></label>
-                                <input type="text" wire:model.lazy="form.segundo_apellido" class="form-control  @error('form.segundo_apellido') is-invalid @enderror" placeholder="Segundo Apellido" />
+                                <input type="text" wire:model.lazy="form.segundo_apellido" class="form-control text-uppercase @error('form.segundo_apellido') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Segundo Apellido" />
                                 @error('form.segundo_apellido')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -53,7 +53,7 @@
                         <div class="col-lg-6 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Pre-Nombres</strong></label>
-                                <input type="text" wire:model.lazy="form.pre_nombres" class="form-control  @error('form.pre_nombres') is-invalid @enderror" placeholder="Pre-Nombres" />
+                                <input type="text" wire:model.lazy="form.pre_nombres" class="form-control text-uppercase @error('form.pre_nombres') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Pre-Nombres" />
                                 @error('form.pre_nombres')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -71,7 +71,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Ubigeo</strong></label>
-                                <input type="text" wire:model.lazy="form.ubigeo" class="form-control  @error('form.ubigeo') is-invalid @enderror" placeholder="Ubigeo" />
+                                <input type="number" wire:model.lazy="form.ubigeo" class="form-control  @error('form.ubigeo') is-invalid @enderror" placeholder="Ubigeo" />
                                 @error('form.ubigeo')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -136,12 +136,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Departamento:</strong></label>
-                                <select type="text" wire:model.lazy="form.departamento" class="form-control @error('form.departamento') is-invalid @enderror">
-                                    <option value="" disabled>Seleccione</option>
-                                    <option value="S">Soltero/a</option>
-                                    <option value="C">Casado/a</option>
-                                    <option value="V">Viudo/a</option>
-                                </select>
+                                <input type="text" wire:model.lazy="form.departamento" class="form-control text-uppercase @error('form.departamento') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Departamento" />
                                 @error('form.departamento')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -150,12 +145,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Provincia:</strong></label>
-                                <select type="text" wire:model.lazy="form.provincia" class="form-control @error('form.provincia') is-invalid @enderror">
-                                    <option value="" disabled>Seleccione</option>
-                                    <option value="S">Soltero/a</option>
-                                    <option value="C">Casado/a</option>
-                                    <option value="V">Viudo/a</option>
-                                </select>
+                                <input type="text" wire:model.lazy="form.provincia" class="form-control text-uppercase @error('form.provincia') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Provincia" />
                                 @error('form.provincia')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -164,12 +154,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Distrito:</strong></label>
-                                <select type="text" wire:model.lazy="form.distrito" class="form-control @error('form.distrito') is-invalid @enderror">
-                                    <option value="" disabled>Seleccione</option>
-                                    <option value="S">Soltero/a</option>
-                                    <option value="C">Casado/a</option>
-                                    <option value="V">Viudo/a</option>
-                                </select>
+                                <input type="text" wire:model.lazy="form.distrito" class="form-control text-uppercase @error('form.distrito') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Distrito" />
                                 @error('form.distrito')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -180,7 +165,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Dirección:</strong></label>
-                                <input type="text" wire:model.lazy="form.direccion" class="form-control  @error('form.direccion') is-invalid @enderror" placeholder="Dirección..." />
+                                <input type="text" wire:model.lazy="form.direccion" class="form-control text-uppercase @error('form.direccion') is-invalid @enderror" placeholder="Dirección..." onkeyup="mayus(this);" placeholder="Distrito" />
                                 @error('form.direccion')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -214,13 +199,13 @@
                         <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Foto:</strong></label>
-                                <input type="file" wire:model.lazy="form.foto" class="form-control @error('form.foto') is-invalid @enderror" accept=".png,.jpeg,.bmp,.gif" />
+                                <input type="file" wire:model.lazy="form.foto" class="form-control @error('form.foto') is-invalid @enderror" accept=".png,.jpg,.jpeg,.bmp,.gif" />
                                 @error('form.foto')
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
+                        {{--<div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Huella:</strong></label>
                                 <input type="file" wire:model.lazy="form.huella" class="form-control @error('form.huella') is-invalid @enderror" accept=".png,.jpeg,.bmp,.gif" />
@@ -228,7 +213,7 @@
                                 <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Firma:</strong></label>

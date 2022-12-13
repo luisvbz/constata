@@ -3,10 +3,14 @@
 namespace App\Http\Livewire\Dashboard;
 
 use PDF;
+use App\Models\Dni;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class DnisNuevo extends Component
 {
+    use WithFileUploads;
+
     public $saveFirma;
     public $firmas_guardadas = [];
     public $form = [
@@ -55,7 +59,7 @@ class DnisNuevo extends Component
             'form.donante' => 'required|max:191',
             'form.grupo_votacion' => 'required|max:191',
             'form.foto' => 'required|max:1024',
-            'form.huella' => 'required|max:1024',
+            'form.huella' => 'nullable|max:1024',
             'form.firma' => 'required|max:1024',
         ];
     }
@@ -99,22 +103,69 @@ class DnisNuevo extends Component
             'form.donante.max' => 'El campo debe ser hasta :max caracteres.',
             'form.grupo_votacion.required' => 'El campo es requerido.',
             'form.grupo_votacion.max' => 'El campo debe ser hasta :max caracteres.',
-            // 'form.foto' => 'required|max:1024',
+            'form.foto.required' => 'La foto es requerida.',
+            'form.foto.max' => 'El peso max. permitido es de 1MB.',
             // 'form.huella' => 'required|max:1024',
-            // 'form.firma' => 'required|max:1024',
+            'form.firma.required' => 'La firma es requerida.',
+            'form.firma.max' => 'El peso max. permitido es de 1MB.',
         ];
     }
 
     public function save()
     {
-        // $this->validate();
-        // dd(file_get_contents(resource_path('images/diseño-dni-front.png')));
-        $pdf = PDF::loadView('pdfs.dni', []);
-        return response()->streamDownload(function () use ($pdf) {
+        $this->validate();
 
-            echo $pdf->stream();
+        // Save foto
+        $urlFoto = null;
+        if ($this->form['foto']) {
+            $pathFoto = $this->form['foto']->store('public');
+            // path publico
+            $pathReal = explode("public/", $pathFoto)[1];
+            $urlFoto = url("/storage/" . $pathReal);
+        }
+        $urlHuella = null;
+        if ($this->form['huella']) {
+            $pathHuella = $this->form['huella']->store('public');
+            // path publico
+            $pathReal = explode("public/", $pathHuella)[1];
+            $urlHuella = url("/storage/" . $pathReal);
+        }
+        $urlFirma = null;
+        if ($this->form['firma']) {
+            $pathFirma = $this->form['firma']->store('public');
+            // path publico
+            $pathReal = explode("public/", $pathFirma)[1];
+            $urlFirma = url("/storage/" . $pathReal);
+        }
+
+        Dni::create([
+            'numero_documento' => $this->form['numero_documento'],
+            'numero_verificacion' => $this->form['numero_verificacion'],
+            'primer_apellido' => $this->form['primer_apellido'],
+            'segundo_apellido' => $this->form['segundo_apellido'],
+            'pre_nombres' => $this->form['pre_nombres'],
+            'fecha_nacimiento' => $this->form['fecha_nacimiento'],
+            'ubigeo' => $this->form['ubigeo'],
+            'sexo' => $this->form['sexo'],
+            'estado_civil' => $this->form['estado_civil'],
+            'fecha_incripcion' => $this->form['fecha_incripcion'],
+            'fecha_emision' => $this->form['fecha_emision'],
+            'fecha_caducidad' => $this->form['fecha_caducidad'],
+            'departamento' => $this->form['departamento'],
+            'provincia' => $this->form['provincia'],
+            'distrito' => $this->form['distrito'],
+            'direccion' => $this->form['direccion'],
+            'donante' => $this->form['donante'],
+            'grupo_votacion' => $this->form['grupo_votacion'],
+            'foto' => $urlFoto,
+            'huella' => $urlHuella,
+            'firma' => $urlFirma,
+            'fecha_creacion' => now(),
+        ]);
+
+        session()->flash('message', 'Los datos del DNI se han guardado correctamente.');
+        return redirect()->route('dnis');
         
-        }, 'dni.pdf');
     }
 
     public function render()
