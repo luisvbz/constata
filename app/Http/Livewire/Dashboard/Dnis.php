@@ -10,6 +10,7 @@ use Treinetic\ImageArtist\lib\Image;
 class Dnis extends Component
 {
     public $numero_documento = '';
+    public $item_id;
 
     public function getDni($item)
     {
@@ -26,6 +27,15 @@ class Dnis extends Component
         $pdf = PDF::loadView('pdfs.dni', $item);
         $pdf->save(storage_path('/app/public/pdfs/'.$item['numero_documento'].'.pdf'));
         return url('/storage/pdfs/'.$item['numero_documento'].'.pdf');
+    }
+
+    public function eliminarRegistro()
+    {
+        $t = Dni::find($this->item_id);
+        if ($t) {
+            $t->delete();
+            session()->flash('message', 'El registro se ha eliminado correctamente.');
+        }
     }
 
     public function render()
