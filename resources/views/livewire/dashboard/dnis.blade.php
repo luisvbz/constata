@@ -76,8 +76,8 @@
 
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                             <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDetalle({{ $dni }})"><i class="fas fa-search"></i> Ver DNI</a>
-                                            <a class="dropdown-item" href="{{ route('dnis.editar', [$dni->numero_documento]) }}"><i class="fas fa-edit"></i> Editar registro</a>
-                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDelete({{ $dni }})"><i class="fas fa-trash"></i> Eliminar registro</a>
+                                            {{--<a class="dropdown-item" href="{{ route('dnis.editar', [$dni->numero_documento]) }}"><i class="fas fa-edit"></i> Editar registro</a>
+                                            <a class="dropdown-item" href="javascript:void(0);" x-on:click="showModalDelete({{ $dni }})"><i class="fas fa-trash"></i> Eliminar registro</a>--}}
                                         </div>
                                     </div>
                                 </td>
