@@ -15,7 +15,7 @@
                         <div class="col col-sm-12">
                             <div class="form-group">
                                 <label><strong>Título 1 - Nombre de país</strong></label>
-                                <input wire:model.lazy="form.pais" class="form-control @error('form.pais') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Ingrese el nombre del país" />
+                                <input type="text" wire:model.lazy="form.pais" class="form-control @error('form.pais') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Título 1 - Nombre de país" />
                                 @error('form.pais')
                                     <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -26,7 +26,7 @@
                         <div class="col col-sm-12">
                             <div class="form-group">
                                 <label><strong>Título 2 - Entidad</strong></label>
-                                <input wire:model.lazy="form.entidad" class="form-control @error('form.entidad') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Ingrese el nombre del país" />
+                                <input type="text" wire:model.lazy="form.entidad" class="form-control @error('form.entidad') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Título 2 - Entidad" />
                                 @error('form.entidad')
                                     <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -37,7 +37,7 @@
                         <div class="col col-sm-12">
                             <div class="form-group">
                                 <label><strong>Título 3 - Título</strong></label>
-                                <input wire:model.lazy="form.titulo" class="form-control @error('form.titulo') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Ingrese el nombre del país" />
+                                <input type="text" wire:model.lazy="form.titulo" class="form-control @error('form.titulo') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Título 3 - Título" />
                                 @error('form.titulo')
                                     <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -54,7 +54,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Nº código de verificación</strong></label>
-                                <input type="number" wire:model.lazy="form.codigo_verificacion" class="form-control @error('form.codigo_verificacion') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Ingrese el nombre del país" />
+                                <input type="number" wire:model.lazy="form.codigo_verificacion" class="form-control @error('form.codigo_verificacion') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Nº código de verificación" />
                                 @error('form.codigo_verificacion')
                                     <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -63,7 +63,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Nº partida registral</strong></label>
-                                <input type="number" wire:model.lazy="form.partida_registral" class="form-control @error('form.partida_registral') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Ingrese el nombre del país" />
+                                <input type="number" wire:model.lazy="form.partida_registral" class="form-control @error('form.partida_registral') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Nº partida registral" />
                                 @error('form.partida_registral')
                                     <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
@@ -72,7 +72,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label><strong>Nº de título</strong></label>
-                                <input type="number" wire:model.lazy="form.num_titulo" class="form-control @error('form.num_titulo') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Ingrese el nombre del país" />
+                                <input type="number" wire:model.lazy="form.num_titulo" class="form-control @error('form.num_titulo') is-invalid @enderror" onkeyup="mayus(this);" placeholder="Nº de título" />
                                 @error('form.num_titulo')
                                     <p class="help-text text-danger">{{ $message }}</p>
                                 @enderror
