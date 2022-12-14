@@ -108,7 +108,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label><strong>Nº de documento</strong></label>
-                        <input class="form-control" wire:model.defer="placa">
+                        <input class="form-control" wire:model.defer="numero_documento">
                     </div>
                 </div>
                 <div class="card-footer d-flex">
