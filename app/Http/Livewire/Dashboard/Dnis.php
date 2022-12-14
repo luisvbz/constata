@@ -5,12 +5,20 @@ namespace App\Http\Livewire\Dashboard;
 use PDF;
 use App\Models\Dni;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Treinetic\ImageArtist\lib\Image;
 
 class Dnis extends Component
 {
+    use WithPagination;
+    
     public $numero_documento = '';
     public $item_id;
+
+    public function filtrar()
+    {
+        $this->resetPage();
+    }
 
     public function getDni($item)
     {
