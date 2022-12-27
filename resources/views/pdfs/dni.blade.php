@@ -61,7 +61,7 @@
 
     <pagebreak type="NEXT-EVEN" />
 
-    <img src="{{ resource_path('images/diseño-dni-post.png') }}" width="321.260px" alt="front">
+    <img src="{{ resource_path('images/diseño-dni-post-merged.png') }}" width="321.260px" alt="front">
     <div style="width:230px;position:fixed;top:6;left:8;">
         <table style="width:100%;font-size:5.5pt;border-collapse:collapse;" cellspacing="0" cellpadding:0;>
             <tr>
@@ -107,6 +107,8 @@
     <div style="width:100px;position:fixed;top:125;left:90;font-weight:bold;font-size:5.6pt;">{{ $donante }}</div>
     <div style="position:fixed;top:125;left:126;font-size:5.6pt;">Grupo de Votación</div>
     <div style="width:100px;position:fixed;top:125;left:195;font-weight:bold;font-size:5.6pt;">{{ $grupo_votacion }}</div>
+    <div style="width:100px;position:fixed;rotate:90;top:130;left:246;color:#0f0f0f;font-weight:bold;font-size:3.1pt;">CARMEN VELARDE KOECHLIN</div>
+    <div style="width:100px;position:fixed;rotate:90;top:145;left:240;color:#0f0f0f;font-weight:bold;font-size:3.1pt;">JEFE NACIONAL</div>
  
 </body>
 </html>
