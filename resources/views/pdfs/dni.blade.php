@@ -108,7 +108,7 @@
     <div style="position:fixed;top:125;left:126;font-size:5.6pt;">Grupo de Votación</div>
     <div style="width:100px;position:fixed;top:125;left:195;font-weight:bold;font-size:5.6pt;">{{ $grupo_votacion }}</div>
     <div style="width:100px;position:fixed;rotate:90;top:130;left:246;color:#0f0f0f;font-weight:bold;font-size:3.1pt;">CARMEN VELARDE KOECHLIN</div>
-    <div style="width:100px;position:fixed;rotate:90;top:145;left:240;color:#0f0f0f;font-weight:bold;font-size:3.1pt;">JEFE NACIONAL</div>
+    <div style="width:100px;position:fixed;rotate:90;top:145;left:241;color:#0f0f0f;font-weight:bold;font-size:3.1pt;">JEFE NACIONAL</div>
  
 </body>
 </html>
